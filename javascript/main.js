@@ -1,7 +1,7 @@
 //variables for background
 var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
-const totalImages = 9;
+const totalImages = 10;
 var loadImages = 0;
 
 var floor = new Image();
@@ -31,6 +31,10 @@ s_bed.onload = imageLoader;
 var l_rug = new Image();
 l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
+var wall = new Image();
+wall.src = "images/wall.png";
+wall.onload = imageLoader;
+
 
 //intializes the player
 var player = {
@@ -44,6 +48,40 @@ var player = {
 player.image.src = "images/player.png";
 
 function displaySafeBackground(){
+
+
+    for(var column = 0; column <= 9; column++){
+        for(var row = 0; row <= 9; row++){
+            context.drawImage(ground[row][column], column * 64, row * 64);
+            context.drawImage(objects[row][column], column * 64, row * 64);
+        }
+    }
+}
+
+function setPlayerAnimationFrame(){
+    if(player.animationframe < 2){
+        //goes to the next animation frame
+        player.animationframe += 1;
+    }else{
+        //goes to the first animation frame
+        player.animationframe = 0;
+    }
+}
+
+
+//e is an argument implanted by javascript whenever they are dealing with an event
+function movePlayer(e){
+    //53 x 55 player
+    var moveSpeed = 7;
+
+    if(e.keyCode === 37){
+        //left arrow
+        //if player is facing left
+        if(player.direction===1){
+            //if player was already going to the left
+            setPlayerAnimationFrame();
+
+
 
     for(var column = 0; column <= 9; column++){
         for(var row = 0; row <= 9; row++){
@@ -74,6 +112,7 @@ function movePlayer(e){
         if(player.direction===1){
             //if player was already going to the left
             setPlayerAnimationFrame();
+
 
         }else{
             //set player to the first animation frame going to the left
@@ -142,6 +181,30 @@ function imageLoader(){
 	//once all images loaded, draw images.
     if(loadImages === totalImages){
         ground =
+
+            [[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall]];
+		//object placement
+        objects =
+            [[wall, wall, wall, wall, wall, wall, s_window, wall, wall, wall],
+                [wall, floor, floor, dresser, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, s_bed, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, s_table, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, l_rug, b_table, floor, floor, wall],
+                [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, s_shelf, floor, floor, floor, wall],
+                [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall]];
+
             [[floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Template</title>
     <meta name="author" content="Elli Raynai">
+    <meta name="author" content="Barry Aldwyn">
+    <meta name="description" content="Implementation of the tutorial">
     <meta name="description" content="Basics of HTML5">
     <meta name="keywords" content="HTML5, CSS">
 
@@ -11,8 +13,29 @@
 
 </head>
 <body>
+
+<div class ="container">
+    <img src="images/dresser.png" alt ="image" class="image" style="width:60px" style="height: 64px">
+    <img src="images/cuboard.png" alt ="image" class="image" style="width:60px" style="height: 64px">
+
+    <div class="middle">
+        <div class="text"> use space bar to access items. </div>
+        <div class="text"> use arrow keys to move player around</div>
+    </div>
+</div>
+<!--<button onclick="myfunction()">Tutorial</button>-->
+<canvas id="helpBox" width="200" height="100"></canvas>
+<canvas id="gamearea" width="640" height="640">Your browser does not support HTML5 canvas!</canvas>
+<canvas id="inventory">Your browser does not support HTML5 canvas!</canvas>
+<script src="javascript/main.js"></script>
+<script src="javascript/inventory.js"></script>
+
+<!--<script src="javascript/tutorial.js"></script>-->
+
+
 <canvas id="gamearea" width="640" height="640">Your browser does not support HTML5 canvas!</canvas>
 <canvas id="inventory">Your browser does not support HTML5 canvas!</canvas>
 <script src="javascript/main-collision.js"></script>
+
 </body>
 </html>
