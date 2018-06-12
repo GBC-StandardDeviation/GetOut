@@ -125,7 +125,7 @@ function drawLeftCorridor(){
             }
     }
 }*/
-/*var room1 = [
+/*var room1 = [ // room on map left
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
@@ -164,7 +164,7 @@ function drawRoom1(){
         }
     }
 }*/
-/*var topCorridor = [
+/*var topCorridor = [ 
     [1,1,0,0,0,0,0,0,0,0,1],
     [1,1,0,0,0,0,0,0,0,0,1],
     [1,1,0,0,0,0,0,0,0,0,1],
@@ -207,7 +207,7 @@ function drawTopCorridor(){
     }
 }*/
 
-/*var room2 = [
+/*var room2 = [ // room on map right
     [2,2,2,2,2,2,2,2,2,2,2],
     [2,2,0,0,0,0,0,0,0,0,2],
     [2,2,0,0,0,0,0,0,0,0,2],
@@ -253,7 +253,7 @@ function drawRoom2(){
         }
     }
 }*/
-var room3 = [
+var room3 = [ //room on map top
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0],
