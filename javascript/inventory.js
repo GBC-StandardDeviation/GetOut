@@ -6,7 +6,7 @@ canvas1.height = 640;
 
 bgImg = new Image();
 bgImg.src = "images/box.png";
-const SIZE = 64;
+//const SIZE = 64;
 var IX=0; IY=0;
 var map = [ //blank inventory
     [0],
@@ -65,7 +65,7 @@ function pickUp(e) {
                         8,10,32,32);
                     demo1++;
                 case 1:
-                    alert("There is nothing on the table")
+                    alert("There is nothing on the table");
                     demo1=1;
             }
            
