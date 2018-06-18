@@ -16,6 +16,9 @@ var sceneLevel1Index;
 canvas.width = 640;
 canvas.height = 640;
 
+var loop1;
+var loop2;
+
 var gameStarted = false;
 var level2Started = false;
 
@@ -68,7 +71,7 @@ function startLevel2() {
     context.clearRect(0, 0, 640, 640);
     intro_screen2();
     level2Started = true;
-    console.log("Hello");
+    console.log("Level2Started");
     loop2();
 
 }
@@ -208,7 +211,8 @@ function loop2(){
         loadImages++;
 
         //once all images loaded, draw images.
-        if(loadImages === totalImages){
+        //if(loadImages === totalImages){
+			console.log("changing map2");
             ground =
                 [[dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall],
                     [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
@@ -244,7 +248,7 @@ function loop2(){
 
             context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
 
-        }
+       // }
     }
 
     //function to detect collision whenever player makes a move using arrow keys
@@ -255,8 +259,8 @@ function loop2(){
             moveDown = true;
             for (row = 0; row < 10; row++){
                 for (column = 0; column < 10; column++){
-                    if (objects[row][column] !== floor &&
-                        objects[row][column] !== wall &&
+                    if (objects[row][column] !== dfloor &&
+                        objects[row][column] !== dwall &&
                         player.x <= (column + 1) * 64 + moveSpeed &&
                         player.x >= (column + 1) * 64 &&
                         player.y >= row * 64 - moveSpeed - 32 &&
@@ -274,8 +278,8 @@ function loop2(){
             moveDown = true;
             for (row = 0; row < 10; row++){
                 for (column = 0; column < 10; column++){
-                    if (objects[row][column] !== floor &&
-                        objects[row][column] !== wall &&
+                    if (objects[row][column] !== dfloor &&
+                        objects[row][column] !== dwall &&
                         player.x >= column * 64 - moveSpeed - 32 &&
                         player.x <= column * 64 - 32 &&
                         player.y >= row * 64 - moveSpeed - 32 &&
@@ -293,8 +297,8 @@ function loop2(){
             moveUp = true;
             for (row = 0; row < 10; row++){
                 for (column = 0; column < 10; column++){
-                    if (objects[row][column] !== floor &&
-                        objects[row][column] !== wall &&
+                    if (objects[row][column] !== dfloor &&
+                        objects[row][column] !== dwall &&
                         player.x >= column * 64 - moveSpeed - 32 &&
                         player.x <= (column + 1) * 64 + moveSpeed &&
                         player.y >= row * 64 - moveSpeed - 32 &&
@@ -312,8 +316,8 @@ function loop2(){
             moveDown = true;
             for (row = 0; row < 10; row++){
                 for (column = 0; column < 10; column++){
-                    if (objects[row][column] !== floor &&
-                        objects[row][column] !== wall &&
+                    if (objects[row][column] !== dfloor &&
+                        objects[row][column] !== dwall &&
                         player.x >= column * 64 - moveSpeed - 32 &&
                         player.x <= (column + 1) * 64 + moveSpeed &&
                         player.y >= (row + 1)* 64 &&
