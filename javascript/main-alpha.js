@@ -589,6 +589,7 @@ function loop(){
 					sceneInteract.innerHTML = "";
 					sceneInteract.appendChild(mainDoorInvtoryButton);
 					mainDoorInvtoryButton.innerHTML = "Go to Inventory";
+					mainDoorInvtoryButton.style.background = "orange";
 					mainDoorInvtoryButton.addEventListener("click", mainDoorInvtoryButtonHandler, false);
 					break;
 					/*sceneInteract.innerHTML = "";
@@ -610,6 +611,7 @@ function loop(){
 					lockerInput.placeholder = "Enter 4 digit number!";
 					lockerInput.focus();
 					lockerButton.innerHTML = "Open";
+					lockerButton.style.background = "orange";
 					lockerButton.addEventListener("click", lockerButtonHandler, false);
 					break;
 				case 4:
@@ -663,6 +665,7 @@ function loop(){
 			if(item[i] === keyItem){
 				sceneInteract.appendChild(keyInvtoryButton);
 				keyInvtoryButton.innerHTML = "key";
+				keyInvtoryButton.style.background = "orange";
 				keyInvtoryButton.addEventListener("click", keyInvtoryButtonHandler, false);
 				sceneInteract.removeChild(mainDoorInvtoryButton);
 				mainDoorInvtoryButton.removeEventListener("click", mainDoorInvtoryButtonHandler, false);
@@ -701,6 +704,7 @@ function loop(){
 					sceneDial.innerHTML += "There is a: " + lockerLevel1.invtory[1];
 					sceneInteract.appendChild(keyItemButton);
 					keyItemButton.innerHTML = "Key Item";
+					keyItemButton.style.background = "orange";
 					keyItemButton.addEventListener("click", keyItemButtonHandler, false);
 					sceneInteract.removeChild(lockerInput);
 					sceneInteract.removeChild(lockerButton);
