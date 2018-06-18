@@ -1,0 +1,61 @@
+#gamearea{
+    float: left;
+    border: 2px black solid;
+}
+#inventory{
+    border: 2px black solid;
+}
+#stage{
+    float: left;
+    position: relative;
+    border: 2px black solid;
+    width: 600px;
+    height: 640px;
+    background: saddlebrown;
+}
+.scene{
+    position: absolute;
+    /*border: 2px black solid;*/
+    width: 590px;
+    height: 200px;
+
+
+}
+#sceneImage{
+    top: 5px;
+    left: 5px;
+}
+#sceneDial{
+    top: 220px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+#sceneInteract{
+    top: 420px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+#levelInput{
+    position: absolute;
+    top: 60px;
+    left: 150px;
+    width: 200px;
+    height: 20px;
+    display: none;
+}
+#levelButton{
+    position: absolute;
+    top: 60px;
+    left: 360px;
+    height: 25px;
+    display: none;
+}
+span{
+    color: orangered;
+}
