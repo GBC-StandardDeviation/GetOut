@@ -7,7 +7,7 @@ var scaleScene = 1;
 var column;
 var row;
 var moveCounter = 2;
-var moveSpeed = 7;
+var moveSpeed = 15;
 var moveLeft = true;
 var moveRight = true;
 var moveUp = true;
@@ -17,6 +17,7 @@ canvas.width = 640;
 canvas.height = 640;
 
 var gameStarted = false;
+var level2Started = false;
 
 /* wait for player to press enter to start playing */
 document.body.addEventListener("keydown", function(event){
@@ -24,6 +25,9 @@ document.body.addEventListener("keydown", function(event){
 	if(event.keyCode == 13 && !gameStarted){
 		startGame();
 	}
+	else if(event.keyCode == 13 && !level2Started){
+	    startLevel2();
+    }
 
 });
 intro_screen();
@@ -39,12 +43,289 @@ function intro_screen(){
 	context.fillText("Press Enter To Start ... if you dare", canvas.width/2, canvas.height/2 + 50);
 }
 
+function intro_screen2(){
+    context.font = "50px Impact";
+    context.fillStyle = "#0099CC";
+    context.textAlign = "center";
+    context.fillText("GET OUT", canvas.width/2, canvas.height/2);
+
+    context.font = "20px Arial";
+    context.fillText("Press Enter To Start Level 2... if you dare", canvas.width/2, canvas.height/2 + 50);
+
+
+}
+
 
 /* start game loop */
 function startGame(){
 	gameStarted = true;
 	clearCanvas();
 		loop();
+}
+
+
+function startLevel2() {
+    context.clearRect(0, 0, 640, 640);
+    intro_screen2();
+    level2Started = true;
+    console.log("Hello");
+    loop2();
+
+}
+
+function loop2(){
+    //environment
+    var dfloor = new Image();
+    dfloor.src = "images/dresser.png";
+    dfloor.onload = imageLoader2;
+    var dwall = new Image();
+    dwall.src = "images/rug.png";
+    dwall.onload = imageLoader2;
+
+    //intializes the player
+    var player = {
+        x: 200,
+        y: 200,
+        image: new Image(),
+        size: 32,
+        direction: 0,
+        animationframe: 0
+    }
+    player.image.src = "images/player.png";
+
+    function displaySafeBackground(){
+
+        for(column = 0; column <= 9; column++){
+            for(row = 0; row <= 9; row++){
+                context.drawImage(ground[row][column], column * 64, row * 64);
+                context.drawImage(objects[row][column], column * 64, row * 64);
+            }
+        }
+    }
+    function setPlayerAnimationFrame(){
+        if(player.animationframe < 2){
+            //goes to the next animation frame
+            player.animationframe += 1;
+        }else{
+            //goes to the first animation frame
+            player.animationframe = 0;
+        }
+    }
+
+
+    function movePlayer(e){
+        //53 x 55 player
+        //var moveSpeed = 7;
+
+        if(e.keyCode === 37){
+            //left arrow
+            //if player is facing left
+
+
+            collision(37);
+            if (moveLeft){
+                if(player.direction===1){
+                    //if player was already going to the left
+                    setPlayerAnimationFrame();
+                }else{
+                    //set player to the first animation frame going to the left
+                    player.animationframe = 0;
+                }
+                if(player.x > 15)
+                    player.x -= moveSpeed;
+                player.direction = 1;
+            }
+        }
+        if(e.keyCode === 39){
+            //right arrow
+
+
+            collision(39);
+            if (moveRight){
+                if(player.direction==2){
+                    setPlayerAnimationFrame();
+                }
+                else{
+                    player.animationframe = 0;
+                }
+                if(player.x < 570)
+                    player.x += moveSpeed;
+                player.direction = 2;
+            }
+        }
+        if(e.keyCode === 38){
+            //up arrow
+
+
+            collision(38);
+            if (moveUp){
+                if(player.direction==3){
+                    setPlayerAnimationFrame();
+                }
+                else{
+                    player.animationframe = 0;
+                }
+                if(player.y > 15)
+                    player.y -= moveSpeed;
+                player.direction = 3;
+            }
+        }
+        if(e.keyCode === 40){
+            //down arrow
+
+
+            collision(40);
+            if (moveDown){
+                if(player.direction==0){
+                    setPlayerAnimationFrame();
+                }
+                else{
+                    player.animationframe = 0;
+                }
+                if(player.y < 570)
+                    player.y += moveSpeed;
+                player.direction = 0;
+            }
+        }
+        displaySafeBackground();
+        context.drawImage(player.image,//specifies the image to use
+            player.animationframe*player.size,//the x coordinate where to start clipping
+            player.direction*player.size,//the y coordinate where to start clipping
+            32,//the width of the clipped image
+            32,//the height of the clipped image
+            player.x,//the x coordinate of where to place the image on the canvas
+            player.y,//the y coordinate of where to place the image on the canvas
+            player.size,//the width of the image to use
+            player.size);//the height of the image to use
+    }
+
+    var ground = {};
+    var objects = {};
+
+    //function to monitor when all the images have been loaded and then draws the background
+    function imageLoader2(){
+        console.log("Running: imageLoader2()");
+        loadImages++;
+
+        //once all images loaded, draw images.
+        if(loadImages === totalImages){
+            ground =
+                [[dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall]];
+            //object placement
+            objects =
+                [[dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dfloor, dwall],
+                    [dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall, dwall]];
+
+
+            //world map loop
+            //tile size 64 x 64
+            displaySafeBackground();
+
+
+            //this listens for a key press only after all images have been loaded
+            window.addEventListener('keydown', movePlayer, false);
+
+            context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
+
+        }
+    }
+
+    //function to detect collision whenever player makes a move using arrow keys
+    function collision(e){
+        if (e === 37){
+            moveRight = true;
+            moveUp = true;
+            moveDown = true;
+            for (row = 0; row < 10; row++){
+                for (column = 0; column < 10; column++){
+                    if (objects[row][column] !== floor &&
+                        objects[row][column] !== wall &&
+                        player.x <= (column + 1) * 64 + moveSpeed &&
+                        player.x >= (column + 1) * 64 &&
+                        player.y >= row * 64 - moveSpeed - 32 &&
+                        player.y <= (row + 1) * 64 + moveSpeed
+                    ){
+                        moveLeft = false;
+                        //sceneLevel2Index = getScene(row, column);
+                    }
+                }
+            }
+        }
+        if (e === 39){
+            moveLeft = true;
+            moveUp = true;
+            moveDown = true;
+            for (row = 0; row < 10; row++){
+                for (column = 0; column < 10; column++){
+                    if (objects[row][column] !== floor &&
+                        objects[row][column] !== wall &&
+                        player.x >= column * 64 - moveSpeed - 32 &&
+                        player.x <= column * 64 - 32 &&
+                        player.y >= row * 64 - moveSpeed - 32 &&
+                        player.y <= (row + 1) * 64 + moveSpeed
+                    ){
+                        moveRight = false;
+                        //sceneLevel1Index = getScene(row, column);
+                    }
+                }
+            }
+        }
+        if (e === 40){
+            moveLeft = true;
+            moveRight = true;
+            moveUp = true;
+            for (row = 0; row < 10; row++){
+                for (column = 0; column < 10; column++){
+                    if (objects[row][column] !== floor &&
+                        objects[row][column] !== wall &&
+                        player.x >= column * 64 - moveSpeed - 32 &&
+                        player.x <= (column + 1) * 64 + moveSpeed &&
+                        player.y >= row * 64 - moveSpeed - 32 &&
+                        player.y <= row * 64 - 32
+                    ){
+                        moveDown = false;
+                        //sceneLevel1Index = getScene(row, column);
+                    }
+                }
+            }
+        }
+        if (e === 38){
+            moveLeft = true;
+            moveRight = true;
+            moveDown = true;
+            for (row = 0; row < 10; row++){
+                for (column = 0; column < 10; column++){
+                    if (objects[row][column] !== floor &&
+                        objects[row][column] !== wall &&
+                        player.x >= column * 64 - moveSpeed - 32 &&
+                        player.x <= (column + 1) * 64 + moveSpeed &&
+                        player.y >= (row + 1)* 64 &&
+                        player.y <= (row + 1) * 64 + moveSpeed
+                    ){
+                        moveUp = false;
+                    }
+                }
+            }
+        }
+    }
+
 }
 /* game loop function */
 function loop(){
@@ -97,6 +378,7 @@ function loop(){
 
 	var mainDoorInvtoryButton = document.createElement("button");
 	var keyInvtoryButton = document.createElement("button");
+	var secondLevelButton = document.createElement("button");
 
 	//var mainDoorInput = document.createElement("input");
 	//var mainDoorButton = document.createElement("button");
@@ -517,11 +799,22 @@ function loop(){
 				keyInvtoryButton.addEventListener("click", keyInvtoryButtonHandler, false);
 				sceneInteract.removeChild(mainDoorInvtoryButton);
 				mainDoorInvtoryButton.removeEventListener("click", mainDoorInvtoryButtonHandler, false);
+
 			}
 		}
 	}
 	function keyInvtoryButtonHandler() {
 		sceneDial.innerHTML = "The door is opened";
+		sceneInteract.removeChild(keyInvtoryButton);
+		keyInvtoryButton.removeEventListener("click",keyInvtoryButtonHandler, false);
+        sceneInteract.appendChild(secondLevelButton);
+        secondLevelButton.innerHTML = "Click Here to Go to the Second Level";
+        secondLevelButton.addEventListener("click", secondLevelHandler, false);
+	}
+
+	function secondLevelHandler(){
+        /* intro screen welcoming player (display menu)*/
+        startLevel2();
 	}
 	/*
 	function mainDoorButtonHandler() {
