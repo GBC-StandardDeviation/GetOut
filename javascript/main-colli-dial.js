@@ -79,10 +79,10 @@ function startLevel2() {
 function loop2(){
     //environment
     var dfloor = new Image();
-    dfloor.src = "images/dresser.png";
+    dfloor.src = "images/d_floor.png";
     dfloor.onload = imageLoader2;
     var dwall = new Image();
-    dwall.src = "images/rug.png";
+    dwall.src = "images/dwall.png";
     dwall.onload = imageLoader2;
 
     //intializes the player
