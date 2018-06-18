@@ -339,8 +339,9 @@ function loop(){
 	var mainDoorLevel1 = {
 		img: "url('images/window.png')",
 		dial: "You reached the main door" + "<br>" + "You need a key to open",
-		//dial: "You reached the main door" + "<br>" + "Please enter 6 digit number to open",
-		//misteryItem: 515098
+		//dial: "You reached the main door" + "<br>" + "Where are we?",
+		//misteryItem: 515098 + "<br>"
+		//misteryItem: 0118
 	};
 	var chestLevel1 = {
 		img: "url('images/b_table.png')",
@@ -351,7 +352,7 @@ function loop(){
 	var lockerLevel1 = {
 		img: "url('images/cuboard.png')",
 		dial: "You reached a locker" + "<br>" + "Please enter 4 digit number to open",
-		invtory: ["To Headmaster of University College London", keyItem],
+		invtory: [" To London", keyItem],
 		misteryItem: 2012
 	};
 	var bookShelfLevel1 = {
@@ -846,16 +847,24 @@ function loop(){
 		keyItemButton.removeEventListener("click", keyItemButtonHandler, false);
 	}
 	function mathButtonHandler() {
-		sceneDial.innerHTML = "Just a bunch of equations, is it really useful?";
+		sceneDial.innerHTML = "Solve a and it might reveal  a sequence of something" + "<br>"
+								+ "4.096a^2 - 0.25b^2 = 4" + "<br>"
+								+ "(5b-15)/3 = 1875/c" + "<br>"
+								+ "√0.8c = 8.765 + (0.247*5)";
+
 	}
 	function historyButtonHandler() {
-		sceneDial.innerHTML = "A range of eschatological beliefs that transformative events would occur on 21 December 2012. The date was regarded as the end-date of a 5,126-year-long cycle in the Mesoamerican Long Count calendar!";
+		sceneDial.innerHTML = "A range of eschatological beliefs that transformative events would occur on 21 December 2012. " +
+			"The date was regarded as the end-date of a 5,126-year-long cycle in the Mesoamerican Long Count calendar!";
 	}
 	function geographyButtonHandler() {
-		sceneDial.innerHTML = "A list of coordinates? Interesting!" + "<br>"
-								+ "Sofia, Bulgaria" + "42.6983" + "23.3199" + "<br>"
-								+ "London, UK" + "51.5098" + "-0.118" + "<br>"
-								+ "Arau, Malaysia" + "6.4297" + "100.269";
+		sceneDial.innerHTML = "A list of coordinates?" + "<br>"
+								+ "Sofia, Bulgaria " + "42.6983 " + " 23.3199" + "<br>"
+								+ "Florence, Italy " + "43.7695 " + " 11.2558" + "<br>"
+								+ "Glasgow, UK " + "55.8642 " + " 4.2518" + "<br>"
+								+ "Kyiv, Ukraine " + "50.4343 " + " 30.5277" + "<br>"
+								+ "London, UK " + "51.5098 " + " -0.118" + "<br>"
+								+ "Alexandria, Egypt " + "31.2057 " + " 29.9245";
 	}
 	function scienceButtonHandler() {
 		sceneDial.innerHTML = '"In order to solve this differential equation you look at it until a solution occurs to you." - George Polya';
