@@ -81,6 +81,8 @@ function loop(){
         chooseLevel(levelNum);
     }
 
+
+
     function chooseLevel(num) {
 
         if( num == 1) {
@@ -823,21 +825,38 @@ function loop(){
    /*------------------------------------------------------------------------------------------------------*/
     var item=[];
     var key={
-        value:1,
+        value:0,
         text:"This is a key"
     };
-    function pickUp(e) {// you will find the first item;
+    var iSize=12;
+    var iSize1=8;
 
+    var iY=12;
+
+
+    function pickUp(e) {// you will find the first item;
+        ctx.font = "10px Georgia";
+        for(var i=0;i<=item.length;i++)
+		{
+			iY=iY*i;
+		}
         if (e.keyCode == 74)// key J
         {
             if ( 376<=player.x <= 418 && 334<=player.y <= 348 || 453<=player.x <=460 && 390<=player.y<=404
 			&& 348<=player.x <= 355 || 383<=player.y<= 411 &&  383<=player.x<=318 || 453<=player.y<=460)// top, right , left , down
             {
+            	switch(key.value){
+					case 0:
 
-                item.push(key);
-                ctx.drawImage(itemImg,
-                    8,10,10,10);
-                ctx.fillText(key.text,20,20);
+						item.push(key);
+                        ctx.drawImage(itemImg,
+                            12,12,iSize,iSize1);
+                        ctx.fillText("        "+key.text,20,20);
+                        key.value++;
+					case 1:
+						key.value=1;
+                }
+
 
             }
 

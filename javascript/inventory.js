@@ -5,10 +5,15 @@ var ctx=can1.getContext("2d");
 var itemImg = new Image();
 itemImg.src = "images/item/1.png";
 
+ctx.fillText("Item |    Description",5,10);
+
+
+
 function btn1() { //use this function to call out inventory window.
     i++;
         if(i%2==0){
             document.getElementById("inventory").style.zIndex ="1";
+
             document.getElementById("inventory").style.border = "2px solid black";
 
         }
@@ -16,6 +21,7 @@ function btn1() { //use this function to call out inventory window.
             document.getElementById("inventory").style.zIndex ="-1";
 
         }
+
 }
 
 
