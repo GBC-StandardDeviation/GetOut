@@ -850,7 +850,7 @@ function loop(){
 
 						item.push(key);
                         ctx.drawImage(itemImg,
-                            12,12,iSize,iSize1);
+                            10,12,iSize,iSize1);
                         ctx.fillText("        "+key.text,20,20);
                         key.value++;
 					case 1:
