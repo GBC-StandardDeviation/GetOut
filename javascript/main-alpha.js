@@ -80,6 +80,7 @@ function loop(){
         //clearCanvas();
         chooseLevel(levelNum);
     }
+
     function chooseLevel(num) {
 
         if( num == 1) {
@@ -389,6 +390,7 @@ function loop(){
             if(e.keyCode === 40){
                 //down arrow
                 moveAudio.play();
+
                 //loadScene();
                 //collision(40);
                 if (moveDown){
@@ -403,6 +405,7 @@ function loop(){
                     player.direction = 0;
                 }
             }
+
             displaySafeBackground();
 			context.drawImage(player.image,//specifies the image to use
                 player.animationframe*player.size,//the x coordinate where to start clipping
@@ -469,6 +472,7 @@ function loop(){
 		}
 	}
 	loadScene();
+
 	//function to detect collision whenever player makes a move using arrow keys
 	function collision(e){
 		if (e === 37){
@@ -783,8 +787,9 @@ function loop(){
                     else context.drawImage(arrowUp, x*SIZE, y*SIZE);
                 }else context.drawImage(floor, x*SIZE, y*SIZE);
                 console.log(arrowCounter);
-            }else {
 
+            }else {
+                console.log(player.x,player.y);
                 clearInterval(arrowIntv);
             }
         }, 500);
@@ -814,7 +819,36 @@ function loop(){
         context.font = "20px Arial";
         context.fillText("How dare you...next room awaits you!", canvas.width/2, canvas.height/2 + 50);
     }
+    var item={};
+    var key={
+        value:1,
+        text:"This is a key"
+    };
+    function pickUp(e) {// you will find the first item;
+
+        if (e.keyCode == 74)// key J
+        {
+            if ( 376<=player.x <= 418 && 334<=player.y <= 348 || 453<=player.x <=460 && 390<=player.y<=404
+			&& 348<=player.x <= 355 || 383<=player.y<= 411 &&  383<=player.x<=318 || 453<=player.y<=460)// top, right , left , down
+            {
+
+                item.push(key);
+                ctx.drawImage(itemImg,
+                    8,10,10,10);
+                ctx.fillText(item.key.text,20,20);
+
+            }
+
+        }
+
+    }
+
+    window.addEventListener('keydown', pickUp, false);
+
+
+
 }
+
 
 function clearCanvas(){
 	context.clearRect(0, 0, 640, 360);

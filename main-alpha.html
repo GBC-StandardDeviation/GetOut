@@ -11,18 +11,27 @@
 
 </head>
 <body>
+
 <!--<canvas id="gamearea" width="640" height="640">Your browser does not support HTML5 canvas!</canvas> -->
-<canvas id="gamearea">Your browser does not support HTML5 canvas!</canvas>
+
+<canvas id="gamearea" ></canvas>
+<canvas id="inventory"></canvas>
+<div class="btn-wrapper">
+    <button type="button" class="btn" onclick="btn1()">Inventory</button>
+</div>
+
 <!--<canvas id="inventory">Your browser does not support HTML5 canvas!</canvas>-->
-<div id="stage">
+<div class="stage">
     <div id="sceneImage" class="scene"></div>
     <div id="sceneDial" class="scene"></div>
     <div id="sceneInteract" class="scene"></div>
-    <input id="levelInput" placeholder="Enter level number" autofocus></input>
+    <input id="levelInput" placeholder="Enter level number" autofocus>
     <button id="levelButton">Go to level</button>
 </div>
 
+
 <script src="javascript/main-alpha.js"></script>
+<script src="javascript/inventory.js"></script>
 <!--<script src="javascript/inventory.js"></script>-->
 </body>
 </html>
