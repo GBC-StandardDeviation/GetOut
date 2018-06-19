@@ -819,6 +819,7 @@ function loop(){
         context.font = "20px Arial";
         context.fillText("How dare you...next room awaits you!", canvas.width/2, canvas.height/2 + 50);
     }
+
    /*------------------------------------------------------------------------------------------------------*/
     var item=[];
     var key={
@@ -836,7 +837,7 @@ function loop(){
                 item.push(key);
                 ctx.drawImage(itemImg,
                     8,10,10,10);
-                ctx.fillText(item.key.text,20,20);
+                ctx.fillText(key.text,20,20);
 
             }
 
