@@ -23,7 +23,7 @@ backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
-moveAudio.src = "sound/encouter_object_one.mp3";
+moveAudio.src = "sound/moving_sound_one.mp3";
 
 var gamearea = document.querySelector("#gamearea");
 var sceneImage = document.querySelector("#sceneImage");
