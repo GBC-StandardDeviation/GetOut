@@ -729,7 +729,10 @@ function loop(){
 	}
 	function mathButtonHandler() {
 		bookAudio.play();
-		sceneDial.innerHTML = "Just a bunch of equations, is it really useful?";
+		sceneDial.innerHTML = "Solve a and it might reveal  a sequence of something" + "<br>"
+           						 	+ "4.096a^2 - 0.25b^2 = 4" + "<br>"
+									+ "(5b-15)/3 = 1875/c" + "<br>"
+            						+ "√0.8c = 8.765 + (0.247*5)";
 	}
 	function historyButtonHandler() {
         bookAudio.play();
@@ -738,10 +741,13 @@ function loop(){
 	}
 	function geographyButtonHandler() {
         bookAudio.play();
-		sceneDial.innerHTML = "A list of coordinates? Interesting!" + "<br>"
-								+ "Sofia, Bulgaria" + "42.6983" + "23.3199" + "<br>"
-								+ "London, UK" + "51.5098" + "-0.118" + "<br>"
-								+ "Arau, Malaysia" + "6.4297" + "100.269";
+		sceneDial.innerHTML = "A list of coordinates?" + "<br>"
+            + "Sofia, Bulgaria " + "42.6983 " + " 23.3199" + "<br>"
+            + "Florence, Italy " + "43.7695 " + " 11.2558" + "<br>"
+            + "Glasgow, UK " + "55.8642 " + " 4.2518" + "<br>"
+            + "Kyiv, Ukraine " + "50.4343 " + " 30.5277" + "<br>"
+            + "London, UK " + "51.5098 " + " -0.118" + "<br>"
+            + "Alexandria, Egypt " + "31.2057 " + " 29.9245";
 	}
 	function scienceButtonHandler() {
         bookAudio.play();
