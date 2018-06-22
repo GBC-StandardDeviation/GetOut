@@ -14,8 +14,16 @@
     height:400px;
     width:400px;
     position:absolute;
-    z-index:-1;
-    background-color:olivedrab;
+    display:none;
+    background-color:white;
+}
+#button{
+    top:20px;
+    left:500px;
+    height:20px;
+    width: 140px;
+    position:absolute;
+    display:block;
 }
 .stage{
     float: left;
@@ -74,41 +82,4 @@
 span{
     color: orangered;
 }
-.btn-wrapper {
-    position: fixed;
-    top: 660px;
-    left: 10px;
-}
-.btn {
-    display: inline-block;
-    box-shadow: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 0;
-    outline: 0;
-    background-color: #00f0a8;
-    height: 35px;
-    line-height: 30px;
-    padding: 0 30px;
-    font-size: 20px;
-    border-radius: 30px;
-    color: #282d32;
-    cursor: pointer;
-    -webkit-transition: all .5s;
-    transition: all .5s;
-    -webkit-transition-timing-function: cubic-bezier(0.2, 3, 0.4, 1);
-    transition-timing-function: cubic-bezier(0.2, 3, 0.4, 1);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    z-index: 2;
-}
-.btn:hover {
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-}
-.btn:active {
-    -webkit-transform: scale(1.05, 1.05);
-    transform: scale(1.05, 1.05);
-}
+

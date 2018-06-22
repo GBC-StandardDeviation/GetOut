@@ -3,6 +3,7 @@ var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
 const totalImages = 10;
 const SIZE = 64;
+var item = [];
 var loadImages = 0;
 var column;
 var row;
@@ -22,7 +23,7 @@ backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
-moveAudio.src = "sound/moving_sound_one.mp3";
+moveAudio.src = "sound/encouter_object_one.mp3";
 
 var gamearea = document.querySelector("#gamearea");
 var sceneImage = document.querySelector("#sceneImage");
@@ -79,7 +80,6 @@ function loop(){
         //clearCanvas();
         chooseLevel(levelNum);
     }
-
 
 
     function chooseLevel(num) {
@@ -176,7 +176,6 @@ function loop(){
 	var s_table = new Image();
 	s_table.src = "images/small_table.png";
 	s_table.onload = imageLoader;
-
 	var b_table = new Image();
 	b_table.src = "images/b_table.png";
 	b_table.onload = imageLoader;
@@ -227,12 +226,13 @@ function loop(){
                 for(row = 0; row <= 9; row++){
                     context.drawImage(groundL1[row][column], column * 64, row * 64);
                     context.drawImage(objectsL1[row][column], column * 64, row * 64);
-                }
-            }
+                    context.fillText("Inventory",540,20);
+            }}
 		} else if(levelNum == 2) {
             for(column = 0; column <= 9; column++){
                 for(row = 0; row <= 9; row++){
                     context.drawImage(groundL1[row][column], column * 64, row * 64);
+                    context.fillText("Inventory",540,20);
                     //context.drawImage(objectsL1[row][column], column * 64, row * 64);
                 }
             }
@@ -595,6 +595,7 @@ function loop(){
 					sceneInteract.innerHTML = "";
 					sceneInteract.appendChild(mainDoorInvtoryButton);
 					mainDoorInvtoryButton.innerHTML = "Go to Inventory";
+					mainDoorInvtoryButton.style.background = "orange";
 					mainDoorInvtoryButton.addEventListener("click", mainDoorInvtoryButtonHandler, false);
 					break;
 					/*sceneInteract.innerHTML = "";
@@ -616,6 +617,7 @@ function loop(){
 					lockerInput.placeholder = "Enter 4 digit number!";
 					lockerInput.focus();
 					lockerButton.innerHTML = "Open";
+					lockerButton.style.background = "orange";
 					lockerButton.addEventListener("click", lockerButtonHandler, false);
 					break;
 				case 4:
@@ -669,6 +671,7 @@ function loop(){
 			if(item[i] === keyItem){
 				sceneInteract.appendChild(keyInvtoryButton);
 				keyInvtoryButton.innerHTML = "key";
+				keyInvtoryButton.style.background = "orange";
 				keyInvtoryButton.addEventListener("click", keyInvtoryButtonHandler, false);
 				sceneInteract.removeChild(mainDoorInvtoryButton);
 				mainDoorInvtoryButton.removeEventListener("click", mainDoorInvtoryButtonHandler, false);
@@ -707,6 +710,7 @@ function loop(){
 					sceneDial.innerHTML += "There is a: " + lockerLevel1.invtory[1];
 					sceneInteract.appendChild(keyItemButton);
 					keyItemButton.innerHTML = "Key Item";
+					keyItemButton.style.background = "orange";
 					keyItemButton.addEventListener("click", keyItemButtonHandler, false);
 					sceneInteract.removeChild(lockerInput);
 					sceneInteract.removeChild(lockerButton);
@@ -725,10 +729,7 @@ function loop(){
 	}
 	function mathButtonHandler() {
 		bookAudio.play();
-		sceneDial.innerHTML = "Solve a and it might reveal  a sequence of something" + "<br>"
-           						 	+ "4.096a^2 - 0.25b^2 = 4" + "<br>"
-									+ "(5b-15)/3 = 1875/c" + "<br>"
-            						+ "√0.8c = 8.765 + (0.247*5)";
+		sceneDial.innerHTML = "Just a bunch of equations, is it really useful?";
 	}
 	function historyButtonHandler() {
         bookAudio.play();
@@ -737,13 +738,10 @@ function loop(){
 	}
 	function geographyButtonHandler() {
         bookAudio.play();
-		sceneDial.innerHTML = "A list of coordinates?" + "<br>"
-            + "Sofia, Bulgaria " + "42.6983 " + " 23.3199" + "<br>"
-            + "Florence, Italy " + "43.7695 " + " 11.2558" + "<br>"
-            + "Glasgow, UK " + "55.8642 " + " 4.2518" + "<br>"
-            + "Kyiv, Ukraine " + "50.4343 " + " 30.5277" + "<br>"
-            + "London, UK " + "51.5098 " + " -0.118" + "<br>"
-            + "Alexandria, Egypt " + "31.2057 " + " 29.9245";
+		sceneDial.innerHTML = "A list of coordinates? Interesting!" + "<br>"
+								+ "Sofia, Bulgaria" + "42.6983" + "23.3199" + "<br>"
+								+ "London, UK" + "51.5098" + "-0.118" + "<br>"
+								+ "Arau, Malaysia" + "6.4297" + "100.269";
 	}
 	function scienceButtonHandler() {
         bookAudio.play();
@@ -823,42 +821,23 @@ function loop(){
         context.font = "20px Arial";
         context.fillText("How dare you...next room awaits you!", canvas.width/2, canvas.height/2 + 50);
     }
-
-   /*------------------------------------------------------------------------------------------------------*/
     var item=[];
     var key={
-        value:0,
+        value:1,
         text:"This is a key"
     };
-    var iSize=12;
-    var iSize1=8;
-
-    var iY=12;
-
-
     function pickUp(e) {// you will find the first item;
-        ctx.font = "10px Georgia";
-        for(var i=0;i<=item.length;i++)
-		{
-			iY=iY*i;
-		}
+
         if (e.keyCode == 74)// key J
         {
             if ( 376<=player.x <= 418 && 334<=player.y <= 348 || 453<=player.x <=460 && 390<=player.y<=404
 			&& 348<=player.x <= 355 || 383<=player.y<= 411 &&  383<=player.x<=318 || 453<=player.y<=460)// top, right , left , down
             {
-            	switch(key.value){
-					case 0:
 
-						item.push(key);
-                        ctx.drawImage(itemImg,
-                            12,12,iSize,iSize1);
-                        ctx.fillText("        "+key.text,20,20);
-                        key.value++;
-					case 1:
-						key.value=1;
-                }
-
+                item.push(key);
+                ctx.drawImage(itemImg,
+                    8,10,10,10);
+                ctx.fillText(key.text,20,20);
 
             }
 
