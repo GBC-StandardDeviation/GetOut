@@ -3,7 +3,6 @@ var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
 const totalImages = 10;
 const SIZE = 64;
-var item = [];
 var loadImages = 0;
 var column;
 var row;
@@ -177,6 +176,7 @@ function loop(){
 	var s_table = new Image();
 	s_table.src = "images/small_table.png";
 	s_table.onload = imageLoader;
+
 	var b_table = new Image();
 	b_table.src = "images/b_table.png";
 	b_table.onload = imageLoader;
