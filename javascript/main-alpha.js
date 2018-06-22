@@ -823,8 +823,10 @@ function loop(){
     }
     var item=[];
     var key={
-        value:1,
-        text:"This is a key"
+        value:0,
+        description:"This is a key",
+		text1:"you have received a key!",
+		text2:"There is nothing on the table."
     };
     function pickUp(e) {// you will find the first item;
 
@@ -833,14 +835,24 @@ function loop(){
             if ( 376<=player.x <= 418 && 334<=player.y <= 348 || 453<=player.x <=460 && 390<=player.y<=404
 			&& 348<=player.x <= 355 || 383<=player.y<= 411 &&  383<=player.x<=318 || 453<=player.y<=460)// top, right , left , down
             {
+            	switch (key.value){
+					case 0:
+                        item.push(key);
 
-                item.push(key);
-                ctx.drawImage(itemImg,
-                    8,10,10,10);
-                ctx.fillText(key.text,20,20);
+                        ctx.drawImage(itemImg,
+                            15, 15, 10, 10);
+                        ctx.fillText(key.description, 35, 25);
+                        key.value++;
+                        break;
+
+					case 1:
+                        key.value=1;
+					break;
+				}
+
+
 
             }
-
         }
 
     }
