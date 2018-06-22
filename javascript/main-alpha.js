@@ -22,7 +22,7 @@ backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
-moveAudio.src = "sound/encouter_object_one.mp3";
+moveAudio.src = "sound/moving_sound_one.mp3";
 
 var gamearea = document.querySelector("#gamearea");
 var sceneImage = document.querySelector("#sceneImage");
@@ -595,7 +595,6 @@ function loop(){
 					sceneInteract.innerHTML = "";
 					sceneInteract.appendChild(mainDoorInvtoryButton);
 					mainDoorInvtoryButton.innerHTML = "Go to Inventory";
-					mainDoorInvtoryButton.style.background = "orange";
 					mainDoorInvtoryButton.addEventListener("click", mainDoorInvtoryButtonHandler, false);
 					break;
 					/*sceneInteract.innerHTML = "";
@@ -617,7 +616,6 @@ function loop(){
 					lockerInput.placeholder = "Enter 4 digit number!";
 					lockerInput.focus();
 					lockerButton.innerHTML = "Open";
-					lockerButton.style.background = "orange";
 					lockerButton.addEventListener("click", lockerButtonHandler, false);
 					break;
 				case 4:
@@ -671,7 +669,6 @@ function loop(){
 			if(item[i] === keyItem){
 				sceneInteract.appendChild(keyInvtoryButton);
 				keyInvtoryButton.innerHTML = "key";
-				keyInvtoryButton.style.background = "orange";
 				keyInvtoryButton.addEventListener("click", keyInvtoryButtonHandler, false);
 				sceneInteract.removeChild(mainDoorInvtoryButton);
 				mainDoorInvtoryButton.removeEventListener("click", mainDoorInvtoryButtonHandler, false);
@@ -710,7 +707,6 @@ function loop(){
 					sceneDial.innerHTML += "There is a: " + lockerLevel1.invtory[1];
 					sceneInteract.appendChild(keyItemButton);
 					keyItemButton.innerHTML = "Key Item";
-					keyItemButton.style.background = "orange";
 					keyItemButton.addEventListener("click", keyItemButtonHandler, false);
 					sceneInteract.removeChild(lockerInput);
 					sceneInteract.removeChild(lockerButton);
@@ -729,7 +725,10 @@ function loop(){
 	}
 	function mathButtonHandler() {
 		bookAudio.play();
-		sceneDial.innerHTML = "Just a bunch of equations, is it really useful?";
+		sceneDial.innerHTML = "Solve a and it might reveal  a sequence of something" + "<br>"
+           						 	+ "4.096a^2 - 0.25b^2 = 4" + "<br>"
+									+ "(5b-15)/3 = 1875/c" + "<br>"
+            						+ "√0.8c = 8.765 + (0.247*5)";
 	}
 	function historyButtonHandler() {
         bookAudio.play();
@@ -738,10 +737,13 @@ function loop(){
 	}
 	function geographyButtonHandler() {
         bookAudio.play();
-		sceneDial.innerHTML = "A list of coordinates? Interesting!" + "<br>"
-								+ "Sofia, Bulgaria" + "42.6983" + "23.3199" + "<br>"
-								+ "London, UK" + "51.5098" + "-0.118" + "<br>"
-								+ "Arau, Malaysia" + "6.4297" + "100.269";
+		sceneDial.innerHTML = "A list of coordinates?" + "<br>"
+            + "Sofia, Bulgaria " + "42.6983 " + " 23.3199" + "<br>"
+            + "Florence, Italy " + "43.7695 " + " 11.2558" + "<br>"
+            + "Glasgow, UK " + "55.8642 " + " 4.2518" + "<br>"
+            + "Kyiv, Ukraine " + "50.4343 " + " 30.5277" + "<br>"
+            + "London, UK " + "51.5098 " + " -0.118" + "<br>"
+            + "Alexandria, Egypt " + "31.2057 " + " 29.9245";
 	}
 	function scienceButtonHandler() {
         bookAudio.play();
@@ -850,7 +852,7 @@ function loop(){
 
 						item.push(key);
                         ctx.drawImage(itemImg,
-                            10,12,iSize,iSize1);
+                            12,12,iSize,iSize1);
                         ctx.fillText("        "+key.text,20,20);
                         key.value++;
 					case 1:
