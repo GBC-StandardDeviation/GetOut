@@ -5,7 +5,8 @@ ctx.font = "12px Georgia";
 ctx.fillStyle = "black";
 ctx.fillText("Item| Description",4,12);
 
-
+var tBox=document.getElementById("textBox");
+var txt=tBox.getContext("2d");
 
 var itemImg = new Image();//key image
 itemImg.src = "images/item/1.png";
