@@ -23,7 +23,7 @@ backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
-moveAudio.src = "sound/encouter_object_one.mp3";
+moveAudio.src = "sound/moving_sound_one.mp3";
 
 var gamearea = document.querySelector("#gamearea");
 var sceneImage = document.querySelector("#sceneImage");
@@ -68,7 +68,7 @@ function startGame(){
 }
 /* game loop function */
 function loop() {
-
+    //choose level to play using input field and button
     levelInput.style.display = "block";
     levelButton.style.display = "block";
     levelButton.addEventListener("click", levelButtonHandler, false);
@@ -77,15 +77,13 @@ function loop() {
         moveAudio.play();
         clearInterval(arrowIntv);
         levelNum = levelInput.value;
-        console.log(levelNum);
-        //clearCanvas();
-        chooseLevel(levelNum);
+        chooseLevel();
     }
 
+    //levels are added here in order to be executed at user's input
+    function chooseLevel() {
 
-    function chooseLevel(num) {
-
-        if (num == 1) {
+        if (levelNum == 1) {
             displaySafeBackground();
             context.drawImage(player.image, 0, 0, player.size, player.size, player.x, player.y, player.size, player.size);
             loop();
@@ -101,6 +99,7 @@ function loop() {
         else sceneDial.innerHTML = "Enter level number again";
     }
 
+    //Game object declaration and initialization at level one --- Start
     var mainLevel1 = {
         img: "url('images/wall.png')",
         dial: "You are in the midst of the room",
@@ -145,12 +144,11 @@ function loop() {
         img: "url('images/bed.png')",
         dial: "You reached a bed"
     };
+    //Game object declaration and initialization at level one --- End;
 
+    //Game object elements as per level one game design --- Start
     var mainDoorInvtoryButton = document.createElement("button");
     var keyInvtoryButton = document.createElement("button");
-
-    //var mainDoorInput = document.createElement("input");
-    //var mainDoorButton = document.createElement("button");
 
     var lockerInput = document.createElement("input");
     var lockerButton = document.createElement("button");
@@ -160,14 +158,11 @@ function loop() {
     var historyButton = document.createElement("button");
     var geographyButton = document.createElement("button");
     var scienceButton = document.createElement("button");
+    //Game object elements as per level one game design --- End;
 
     var sceneLevel1 = [mainLevel1, mainDoorLevel1, chestLevel1, lockerLevel1, bookShelfLevel1,
         dresserLevel1, smallTableLevel1, rugLevel1, bedLevel1];
-    /*	var gamearea = document.querySelector("#gamearea");
-        var sceneImage = document.querySelector("#sceneImage");
-        var sceneDial = document.querySelector("#sceneDial");
-        var sceneInteract = document.querySelector("#sceneInteract");
-    */
+
     var floor = new Image();
     floor.src = "images/wood_floor.png";
     floor.onload = imageLoader;
@@ -221,6 +216,8 @@ function loop() {
         }
     }
     */
+
+
     function displaySafeBackground() {
         if (levelNum == 1) {
 
@@ -231,12 +228,11 @@ function loop() {
                     context.fillText("Inventory", 540, 20);
                 }
             }
-        } else if (levelNum == 2) {
+        } else if (levelNum == 2) { //Lines 232 - 234 will be replaced by code as per game design when finished.
             for (column = 0; column <= 9; column++) {
                 for (row = 0; row <= 9; row++) {
                     context.drawImage(groundL1[row][column], column * 64, row * 64);
                     context.fillText("Inventory", 540, 20);
-                    //context.drawImage(objectsL1[row][column], column * 64, row * 64);
                 }
             }
             sceneDial.innerHTML = "You're at level 2";
@@ -564,6 +560,8 @@ function loop() {
         }
     }
 
+    //return values according to game object locations at level 1;
+    //returned values match with indexes of array sceneLevel1
     function getScene(locRow, locColumn) {
         if (locRow === 0 && locColumn === 6)
             return 1; //main door
@@ -582,6 +580,7 @@ function loop() {
         if (locRow === 2 && locColumn === 8)
             return 8; //bed
     }
+
 
     function loadScene() {
         if (moveLeft && moveRight && moveUp && moveDown) {
@@ -713,7 +712,7 @@ function loop() {
     function lockerButtonHandler() {
         moveAudio.play();
         if (lockerInput.value == lockerLevel1.misteryItem) {
-            sceneDial.innerHTML = "The locker is opened" + "<br>" + "There is a letter:" + lockerLevel1.invtory[0] + "<br>"
+            sceneDial.innerHTML = "The locker is opened" + "<br>" + "There is a letter:" + lockerLevel1.invtory[0] + "<br>";
             for (i = 0; i < lockerLevel1.invtory.length; i++) {
                 if (lockerLevel1.invtory[i] === keyItem) {
                     sceneDial.innerHTML += "There is a: " + lockerLevel1.invtory[1];
@@ -787,12 +786,16 @@ function loop() {
     }
     */
 
+    //called when player interacts with game objects as per game design at level 1
+    //Actual parameters that are arrow locations will be passed to the formal parameters
     function drawArrow(x, y) {
+
         var arrowCounter = 0;
         var arrowUp = new Image();
         arrowUp.src = "images/arrowUp.png";
         var arrowDown = new Image();
         arrowDown.src = "images/arrowDown.png";
+
         var floor = new Image();
         floor.src = "images/wood_floor.png";
         arrowIntv = setInterval(function () {
@@ -803,10 +806,8 @@ function loop() {
                         context.drawImage(arrowDown, x * SIZE, y * SIZE);
                     else context.drawImage(arrowUp, x * SIZE, y * SIZE);
                 } else context.drawImage(floor, x * SIZE, y * SIZE);
-                console.log(arrowCounter);
 
             } else {
-                console.log(player.x, player.y);
                 clearInterval(arrowIntv);
             }
         }, 500);
@@ -818,8 +819,8 @@ function loop() {
         moveUp = true;
         moveDown = true;
         sceneImage.style.background = "none";
-        //sceneInteract.style.display = "none";
-        for (column = 0; column <= 9; column++) {
+
+        for (column = 0; column <= 9; column++) { //Lines 819 - 826 will be replaced by code as per game design when finished.
             for (row = 0; row <= 9; row++) {
                 context.drawImage(groundL1[row][column], column * 64, row * 64);
                 //context.drawImage(objectsL1[row][column], column * 64, row * 64);
