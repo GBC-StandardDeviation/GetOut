@@ -19,7 +19,7 @@ canvas.height = 640;
 var gameStarted = false;
 var arrowIntv;
 var backgroundAudio = new Audio();
-backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
+//backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
@@ -47,13 +47,44 @@ intro_screen();
 
 /* intro screen welcoming player (display menu)*/
 function intro_screen(){
+	
+	context.fillStyle = "black";
+	context.fillRect(0,0,canvas.width, canvas.height);
+
 	context.font = "50px Impact";
-	context.fillStyle = "#0099CC";
+	context.fillStyle = "#FF0066";
 	context.textAlign = "center";
-	context.fillText("GET OUT", canvas.width/2, canvas.height/2);
+	
+	
+	
+	//context.fillText("GET OUT", canvas.width/2, canvas.height/2);
+	
 
 	context.font = "20px Arial";
 	context.fillText("Press Enter To Start ... if you dare", canvas.width/2, canvas.height/2 + 50);
+	
+	
+	
+	var imageTitle = new Image();
+	imageTitle.src = "images/Menu/getout.png";
+	imageTitle.onload = function(){
+		context.drawImage(imageTitle, 70,50, 500, 100);
+	};
+	var imageDevs = new Image();
+	imageDevs.src = "images/Menu/createdanddev.png";
+	imageDevs.onload = function(){
+		context.drawImage(imageDevs, 195,550, 250, 35);
+	};
+	var imageStandardDeviation = new Image();
+	imageStandardDeviation.src = "images/Menu/standarddeviation.png";
+	imageStandardDeviation.onload = function(){
+		context.drawImage(imageStandardDeviation, 120,575, 400, 75);
+	};
+	
+	sceneDial.innerHTML = "Story goes here";
+	
+	
+	
 }
 
 
@@ -74,7 +105,7 @@ function loop() {
     levelButton.addEventListener("click", levelButtonHandler, false);
 
     function levelButtonHandler() {
-        moveAudio.play();
+        //moveAudio.play();
         clearInterval(arrowIntv);
         levelNum = levelInput.value;
         chooseLevel();
@@ -164,7 +195,7 @@ function loop() {
         dresserLevel1, smallTableLevel1, rugLevel1, bedLevel1];
 
     var floor = new Image();
-    floor.src = "images/wood_floor.png";
+    floor.src = "images/floor_game2.jpg";
     floor.onload = imageLoader;
     var dresser = new Image();
     dresser.src = "images/dresser.png";
@@ -177,12 +208,13 @@ function loop() {
     b_table.onload = imageLoader;
     var s_window = new Image();
     s_window.src = "images/window.png";
+	//s_window.src = "images/doubledoor.png";
     s_window.onload = imageLoader;
     var cuboard = new Image();
-    cuboard.src = "images/cuboard.png";
+    cuboard.src = "images/universal_locker2.jpg";
     cuboard.onload = imageLoader;
     var s_shelf = new Image();
-    s_shelf.src = "images/shelf.png";
+    s_shelf.src = "images/bookshelf.png";
     s_shelf.onload = imageLoader;
     var s_bed = new Image();
     s_bed.src = "images/bed.png";
@@ -191,7 +223,7 @@ function loop() {
     l_rug.src = "images/rug.png";
     l_rug.onload = imageLoader;
     var wall = new Image();
-    wall.src = "images/wall.png";
+    wall.src = "images/handpaintedwall2.png"
     wall.onload = imageLoader;
 
     //intializes the player
@@ -256,72 +288,66 @@ function loop() {
         //var moveSpeed = 7;
         if (levelNum == 1) {
             if (e.keyCode === 37) {
-                //left arrow
-                //if player is facing left
-                moveAudio.play();
+                //left arrow                
                 loadScene();
                 collision(37);
                 if (moveLeft) {
-                    if (player.direction === 1) {
-                        //if player was already going to the left
-                        setPlayerAnimationFrame();
-                    } else {
-                        //set player to the first animation frame going to the left
-                        player.animationframe = 0;
+                    if (player.direction != 1) {
+						player.animationframe = 0;
                     }
-                    if (player.x > SIZE + moveSpeed)
+                    if (player.x > SIZE + moveSpeed){
                         player.x -= moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 1;
                 }
             }
             if (e.keyCode === 39) {
                 //right arrow
-                moveAudio.play();
                 loadScene();
                 collision(39);
                 if (moveRight) {
-                    if (player.direction == 2) {
-                        setPlayerAnimationFrame();
+                    if (player.direction != 2) {
+						player.animationframe = 0;
                     }
-                    else {
-                        player.animationframe = 0;
-                    }
-                    if (player.x < canvas.width - SIZE - moveSpeed - 32)
+                    if (player.x < canvas.width - SIZE - moveSpeed - 32){
                         player.x += moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 2;
                 }
             }
             if (e.keyCode === 38) {
                 //up arrow
-                moveAudio.play();
                 loadScene();
                 collision(38);
                 if (moveUp) {
-                    if (player.direction == 3) {
-                        setPlayerAnimationFrame();
+                    if (player.direction != 3) {
+						player.animationframe = 0;
                     }
-                    else {
-                        player.animationframe = 0;
-                    }
-                    if (player.y > SIZE + moveSpeed)
+                    if (player.y > SIZE + moveSpeed){
                         player.y -= moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 3;
                 }
             }
             if (e.keyCode === 40) {
                 //down arrow
-                moveAudio.play();
                 loadScene();
                 collision(40);
                 if (moveDown) {
-                    if (player.direction == 0) {
-                        setPlayerAnimationFrame();
-                    }
-                    else {
+                    if (player.direction != 0) {
                         player.animationframe = 0;
                     }
-                    if (player.y < canvas.height - SIZE - moveSpeed - 32)
+                    if (player.y < canvas.height - SIZE - moveSpeed - 32){
                         player.y += moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 0;
                 }
             }
@@ -339,71 +365,86 @@ function loop() {
             if (e.keyCode === 37) {
                 //left arrow
                 //if player is facing left
-                moveAudio.play();
+                
                 //loadScene();
                 //collision(37);
                 if (moveLeft) {
                     if (player.direction === 1) {
                         //if player was already going to the left
-                        setPlayerAnimationFrame();
+                        //setPlayerAnimationFrame();
                     } else {
                         //set player to the first animation frame going to the left
                         player.animationframe = 0;
                     }
-                    if (player.x > SIZE + moveSpeed)
+                    if (player.x > SIZE + moveSpeed){
                         player.x -= moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 1;
                 }
             }
             if (e.keyCode === 39) {
                 //right arrow
-                moveAudio.play();
+                
                 //loadScene();
                 //collision(39);
                 if (moveRight) {
+					
                     if (player.direction == 2) {
-                        setPlayerAnimationFrame();
+                        //setPlayerAnimationFrame();
                     }
                     else {
                         player.animationframe = 0;
                     }
-                    if (player.x < canvas.width - SIZE - moveSpeed - 32)
+                    if (player.x < canvas.width - SIZE - moveSpeed - 32){
                         player.x += moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 2;
                 }
             }
             if (e.keyCode === 38) {
                 //up arrow
-                moveAudio.play();
+                
                 //loadScene();
                 //collision(38);
                 if (moveUp) {
+					
                     if (player.direction == 3) {
-                        setPlayerAnimationFrame();
+                        //setPlayerAnimationFrame();
                     }
                     else {
                         player.animationframe = 0;
                     }
-                    if (player.y > SIZE + moveSpeed)
+                    if (player.y > SIZE + moveSpeed){
                         player.y -= moveSpeed;
+						setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 3;
                 }
             }
             if (e.keyCode === 40) {
                 //down arrow
-                moveAudio.play();
+                
 
                 //loadScene();
                 //collision(40);
                 if (moveDown) {
+					
                     if (player.direction == 0) {
-                        setPlayerAnimationFrame();
+                        //setPlayerAnimationFrame();
                     }
                     else {
                         player.animationframe = 0;
                     }
-                    if (player.y < canvas.height - SIZE - moveSpeed - 32)
+                    if (player.y < canvas.height - SIZE - moveSpeed - 32){
                         player.y += moveSpeed;
+						//setPlayerAnimationFrame();
+						moveAudio.play();
+					}
                     player.direction = 0;
                 }
             }
@@ -672,7 +713,7 @@ function loop() {
     }
 
     function mainDoorInvtoryButtonHandler() {
-        moveAudio.play();
+        //moveAudio.play();
         for (i = 0; i < item.length; i++) {
             if (item[i] === keyItem) {
                 sceneInteract.appendChild(keyInvtoryButton);
@@ -686,7 +727,7 @@ function loop() {
     }
 
     function keyInvtoryButtonHandler() {
-        moveAudio.play();
+        //moveAudio.play();
         sceneDial.innerHTML = "The door is opened";
         levelNum = 2;
         moveLeft = false;
@@ -710,7 +751,7 @@ function loop() {
     }
     */
     function lockerButtonHandler() {
-        moveAudio.play();
+        //moveAudio.play();
         if (lockerInput.value == lockerLevel1.misteryItem) {
             sceneDial.innerHTML = "The locker is opened" + "<br>" + "There is a letter:" + lockerLevel1.invtory[0] + "<br>";
             for (i = 0; i < lockerLevel1.invtory.length; i++) {
@@ -729,7 +770,7 @@ function loop() {
     }
 
     function keyItemButtonHandler() {
-        moveAudio.play();
+        //moveAudio.play();
         item.push(lockerLevel1.invtory.pop());
         sceneDial.innerHTML += "<br>" + "<span>" + "You got a: " + item + "</span>";
         sceneInteract.removeChild(keyItemButton);
@@ -797,7 +838,7 @@ function loop() {
         arrowDown.src = "images/arrowDown.png";
 
         var floor = new Image();
-        floor.src = "images/wood_floor.png";
+        floor.src = "images/floor_game2.jpg";
         arrowIntv = setInterval(function () {
             arrowCounter++;
             if (arrowCounter <= 10) {

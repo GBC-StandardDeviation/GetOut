@@ -9,10 +9,10 @@ var column;
 var row;
 var moveCounter = 2;
 var moveSpeed = 7;
-var moveLeft = true;
-var moveRight = true;
-var moveUp = true;
-var moveDown = true;
+var moveLeft;// = false;
+var moveRight;// = false;
+var moveUp;// = false;
+var moveDown;// = false;
 
 canvas.width = 640;
 canvas.height = 640;
@@ -24,12 +24,13 @@ var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
 moveAudio.src = "sound/moving_sound_one.mp3";
-var totalTime;
+const totalTime = 60 * 2; //2 minute; equivalent to calling restart function 120 times;
+var timeLeft = totalTime;
 var minuteCount;
 var secondCount;
 
 var gamearea = document.querySelector("#gamearea");
-var sceneImage = document.querySelector("#sceneImage");
+var sceneContent = document.querySelector("#sceneContent");
 var sceneDial = document.querySelector("#sceneDial");
 var sceneInteract = document.querySelector("#sceneInteract");
 var levelInput = document.querySelector("#levelInput");
@@ -39,10 +40,12 @@ var levelNum = 1;
 var startCounterIntv;
 var count;
 var timerIntv;
-
+var inventory = new Image();
+inventory.src = "images/box.png";
+var gameEnd = false;
 var player = {
-    x: 200,
-    y: 200,
+    x: undefined,
+    y: undefined,
     image: new Image(),
     size: 32,
     direction: 0,
@@ -58,6 +61,12 @@ document.body.addEventListener("keydown", function(event){
     }
     if (event.keyCode == 13 && gameStarted && chest_l2.isActive)
         chestButtonHandler_l2();
+    if(gameEnd)
+        restart();
+});
+document.body.addEventListener("keypress", function(event){
+    if(gameEnd)
+        restart();
 });
 window.addEventListener('keydown', movePlayer, false);
 
@@ -74,14 +83,12 @@ function intro_screen(){
     context.fillText("Press Enter To Start ... if you dare", canvas.width/2, canvas.height/2 + 50);
 }
 
-
-
 function startGame(){
-    gameStarted = true;
+    context.clearRect(0,0, canvas.width, canvas.height);
+    //gameStarted = true;
     count = 0;
-    //startCounterIntv = setInterval(restart, 1000);
+    startCounterIntv = setInterval(startCounter, 1000);
     timerIntv = setInterval(displayTimer, 1000);
-    totalTime = 60 * 1/2; //1/2 minute; equivalent to calling restart function 30 times
     timerDisplay.style.display = "block";
     levelInput.style.display = "block";
     levelButton.style.display = "block";
@@ -92,34 +99,61 @@ function startGame(){
 /* start game loop */
 function loop(){
     console.log(levelNum);
+    context.clearRect(0, 0 , canvas.width, canvas.height);
+    gamearea.style.background = "black";
     if (levelNum == 1){
-        start_l1();
-        loadScene_l1();
+        player.x = 200;
+        player.y = 200;
+        setTimeout(start_l1, 1100);
     }else if(levelNum == 2){
-        changeLevelScreen();
-        setTimeout(start_l2, 3000);
+        player.x = 100;
+        player.y = 265;
+        setTimeout(start_l2, 1100);
+    }else if(levelNum == 3) {
+        player.x = 100;
+        player.y = 265;
+        setTimeout(start_l3, 1100);
+    }else if(levelNum == 4) {
+
+        setTimeout(start_l4, 1100);
     }else sceneDial.innerHTML = "Enter level number again";
 }
 function levelButtonHandler() {
     moveAudio.play();
     clearInterval(arrowIntv);
+    gameStarted = false;
+    moveLeft = false;
+    moveRight = false;
+    moveUp = false;
+    moveDown = false;
     levelNum = levelInput.value;
     loop();
 }
 
 function movePlayer(e){
     //53 x 55 player
+    if(gameStarted)
+    context.clearRect(player.x, player.y,player.size,player.size);
     if(e.keyCode === 37){
         //left arrow
         //if player is facing left
         moveAudio.play();
-        if(levelNum == 1){
-            loadScene_l1();
-            checkCollision_l1(37);
-        }else if(levelNum == 2){
-            loadScene_l2();
-            checkCollision_l2(37);
+        if(gameStarted){
+            if(levelNum == 1){
+                loadScene_l1();
+                checkCollision_l1(37);
+            }else if(levelNum == 2){
+                loadScene_l2();
+                checkCollision_l2(37);
+            }else if(levelNum == 3){
+                loadScene_l3();
+                checkCollision_l3(37);
+            }else if(levelNum == 4) {
+                loadScene_l4();
+                checkCollision_l4(37);
+            }
         }
+
         if (moveLeft && gameStarted){
             if(player.direction===1){
                 //if player was already going to the left
@@ -129,7 +163,7 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.x > SIZE + moveSpeed){
-                context.drawImage(floor, player.x, player.y,player.size,player.size);
+                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.x -= moveSpeed;
             }
             player.direction = 1;
@@ -138,13 +172,22 @@ function movePlayer(e){
     if(e.keyCode === 39){
         //right arrow
         moveAudio.play();
-        if(levelNum == 1){
-            loadScene_l1();
-            checkCollision_l1(39);
-        }else if(levelNum == 2){
-            loadScene_l2();
-            checkCollision_l2(39);
+        if(gameStarted){
+            if(levelNum == 1){
+                loadScene_l1();
+                checkCollision_l1(39);
+            }else if(levelNum == 2){
+                loadScene_l2();
+                checkCollision_l2(39);
+            }else if(levelNum == 3){
+                loadScene_l3();
+                checkCollision_l3(39);
+            }else if(levelNum == 4) {
+                loadScene_l4();
+                checkCollision_l4(39);
+            }
         }
+
         if (moveRight && gameStarted){
             if(player.direction==2){
                 setPlayerAnimationFrame();
@@ -153,7 +196,7 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.x < canvas.width - SIZE - moveSpeed - 32){
-                context.drawImage(floor, player.x, player.y,player.size,player.size);
+                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.x += moveSpeed;
             }
             player.direction = 2;
@@ -162,13 +205,22 @@ function movePlayer(e){
     if(e.keyCode === 38){
         //up arrow
         moveAudio.play();
-        if(levelNum == 1){
-            loadScene_l1();
-            checkCollision_l1(38);
-        }else if(levelNum == 2){
-            loadScene_l2();
-            checkCollision_l2(38);
+        if(gameStarted){
+            if(levelNum == 1){
+                loadScene_l1();
+                checkCollision_l1(38);
+            }else if(levelNum == 2){
+                loadScene_l2();
+                checkCollision_l2(38);
+            }else if(levelNum == 3){
+                loadScene_l3();
+                checkCollision_l3(38);
+            }else if(levelNum == 4) {
+                loadScene_l4();
+                checkCollision_l4(38);
+            }
         }
+
         if (moveUp && gameStarted){
             if(player.direction==3){
                 setPlayerAnimationFrame();
@@ -177,7 +229,7 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.y > SIZE + moveSpeed){
-                context.drawImage(floor, player.x, player.y,player.size,player.size);
+                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.y -= moveSpeed;
             }
 
@@ -187,13 +239,22 @@ function movePlayer(e){
     if(e.keyCode === 40){
         //down arrow
         moveAudio.play();
-        if(levelNum == 1){
-            loadScene_l1();
-            checkCollision_l1(40);
-        }else if(levelNum == 2){
-            loadScene_l2();
-            checkCollision_l2(40);
+        if(gameStarted){
+            if(levelNum == 1){
+                loadScene_l1();
+                checkCollision_l1(40);
+            }else if(levelNum == 2){
+                loadScene_l2();
+                checkCollision_l2(40);
+            }else if(levelNum == 3){
+                loadScene_l3();
+                checkCollision_l3(40);
+            }else if(levelNum == 4) {
+                loadScene_l4();
+                checkCollision_l4(40);
+            }
         }
+
         if (moveDown && gameStarted){
             if(player.direction==0){
                 setPlayerAnimationFrame();
@@ -202,7 +263,7 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.y < canvas.height - SIZE - moveSpeed - 32){
-                context.drawImage(floor, player.x, player.y,player.size,player.size);
+                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.y += moveSpeed;
             }
             player.direction = 0;
@@ -230,48 +291,40 @@ function setPlayerAnimationFrame(){
         player.animationframe = 0;
     }
 }
-//function to restart Game after a period of time
-function restart() {
-    //count ++;
-    //if(count === 31){ //restart Game at the 31st second
-    if(totalTime === 0){
+function startCounter() {
+    if(timeLeft === 0){
         context.clearRect(0, 0, canvas.width, canvas.height);
         end_screen();
         clearInterval(startCounterIntv);
-        gameStarted = false;
         levelInput.style.display = "none";
         levelButton.style.display = "none";
+        sceneContent.style.background = "saddlebrown";
+        sceneContent.innerHTML = "";
+        sceneDial.innerHTML = "";
+        sceneInteract.innerHTML = "";
+        gameStarted = true;
+        gameEnd = true;
     }
 }
 function displayTimer() {
-    minuteCount = Math.floor(totalTime/60);
-    secondCount = totalTime % 60;
-    totalTime --;
+    minuteCount = Math.floor(timeLeft/60);
+    secondCount = timeLeft % 60;
+    timeLeft --;
     timerDisplay.innerHTML = "Time left: " + minuteCount + " minutes " + secondCount + " seconds...";
-    if (totalTime === -1){
+    if (timeLeft === -1){
         clearInterval(timerIntv);
     }
 }
 function end_screen(){
+    gamearea.style.background = "black";
     context.font = "50px Impact";
     context.fillStyle = "#0099CC";
     context.textAlign = "center";
     context.fillText("GAME OVER...HAHAHA...", canvas.width/2, canvas.height/2);
     context.font = "20px Arial";
-    context.fillText("Press Enter to restart!", canvas.width/2, canvas.height/2 + 50);
+    context.fillText("Press any key to restart!", canvas.width/2, canvas.height/2 + 50);
 }
-function changeLevelScreen(){
-    moveLeft = false;
-    moveRight = false;
-    moveUp = false;
-    moveDown = false;
-    gamearea.style.background = "black";
-    context.clearRect(0, 0 , canvas.width, canvas.height);
-    context.font = "50px Impact";
-    context.fillStyle = "#0099CC";
-    context.textAlign = "center";
-    context.fillText("GET OUT", canvas.width/2, canvas.height/2);
-    context.font = "20px Arial";
-    context.fillText("How dare you...next room awaits you!", canvas.width/2, canvas.height/2 + 50);
+function restart() {
+    location.reload();
 }
 
