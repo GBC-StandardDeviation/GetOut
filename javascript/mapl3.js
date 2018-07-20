@@ -205,7 +205,7 @@ function getCoor(e) {
     var mouseX = e.pageX;
     var mouseY = e.pageY;
     sceneDial.innerHTML = mouseX + " " + mouseY;
-    if (mouseX >= 579 && mouseX <=581 && mouseY >=532 && mouseY <= 534){ //Gold Coast, Queensland, Australia
+    if (mouseX >= 578 && mouseX <=582 && mouseY >=531 && mouseY <= 535){ //Gold Coast, Queensland, Australia
         context.clearRect(0, 0, canvas.width, canvas.height);
         gamearea.style.background = "black";
         door_l3_Intv = setInterval(openDoor_l3, 1100);
@@ -229,9 +229,9 @@ function openDoor_l3() {
         context.font = "30px Impact";
         context.fillStyle = "#0099CC";
         context.textAlign = "center";
-        context.fillText("Go to the Bunker...You Are Safe Now!", canvas.width/2, canvas.height/2);
+        context.fillText("Do you think that you will be safe in the Bunker?", canvas.width/2, canvas.height/2);
         context.font = "20px Arial";
-        context.fillText("Press any key to play again!", canvas.width/2, canvas.height/2 + 50);
+        context.fillText("Get out of here!!!", canvas.width/2, canvas.height/2 + 50);
         sceneDial.innerHTML = "";
         sceneInteract.innerHTML = "";
         gameEnd = true;

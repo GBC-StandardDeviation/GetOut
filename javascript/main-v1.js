@@ -320,7 +320,7 @@ function end_screen(){
     context.font = "50px Impact";
     context.fillStyle = "#0099CC";
     context.textAlign = "center";
-    context.fillText("GAME OVER...HAHAHA...", canvas.width/2, canvas.height/2);
+    context.fillText("GAME OVER!", canvas.width/2, canvas.height/2);
     context.font = "20px Arial";
     context.fillText("Press any key to restart!", canvas.width/2, canvas.height/2 + 50);
 }
