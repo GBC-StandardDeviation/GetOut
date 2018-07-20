@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main-Phaser.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main-Phaser.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state relative-caret-position="95">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -50,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map5.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map5.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/preload/map5.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
@@ -81,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/js/states/WorldState.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="988">
-              <caret line="52" column="2" lean-forward="true" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+              <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -105,6 +105,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -158,73 +161,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="maps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="preload" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="sprites" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="user_inputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="prefabs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="prefabs" type="462c0819:PsiDirectoryNode" />
-              <item name="world" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Game-GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Game-GetOut" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
+              <item name="GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GetOut" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -257,8 +195,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.Main-Phaser.html (1)">
+    <configuration name="Main-Phaser.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/GetOut/Main-Phaser.html" />
     <configuration name="Main-Phaser.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Game-GetOut/Main-Phaser.html" />
+    <list>
+      <item itemvalue="JavaScript Debug.Main-Phaser.html" />
+      <item itemvalue="JavaScript Debug.Main-Phaser.html (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.Main-Phaser.html" />
@@ -282,11 +225,12 @@
       <workItem from="1532048888563" duration="3134000" />
       <workItem from="1532053403281" duration="28000" />
       <workItem from="1532062387701" duration="1859000" />
+      <workItem from="1532129840972" duration="174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23925000" />
+    <option name="totallyTimeSpent" value="24099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -295,7 +239,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32910052" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
@@ -602,7 +546,7 @@
     <entry file="file://$PROJECT_DIR$/js/states/WorldState.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="988">
-          <caret line="52" column="2" lean-forward="true" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+          <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -624,13 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -659,6 +596,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="65" lean-forward="true" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
