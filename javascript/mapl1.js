@@ -20,7 +20,7 @@ var wall = new Image();
 wall.src = "images/wall.png";
 
 var main_l1 = {
-    dial: "You are in the midst of the room",
+    dial: "What are you waiting for? Get out of the room!",
     invtory: "There is nothing strange!"
 };
 var mainDoor_l1 = {
@@ -38,7 +38,7 @@ keyItem_l1.img = new Image();
 keyItem_l1.img.src = "images/item/keyItem_l1.png";
 var locker_l1 = {
     dial: "You reached a locker" + "<br>" + "Please enter 4 digit number to open",
-    invtory: ["To Headmaster of University College London", keyItem_l1.name],
+    invtory: ["", keyItem_l1.name],
     misteryItem: 2012
 };
 var bookShelf_l1 = {
@@ -275,9 +275,9 @@ function geographyButtonHandler_l1() {
     sceneDial.innerHTML = "";
     sceneContent.style.color = "white";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                            + "Sofia, Bulgaria" + "42.6983" + "23.3199" + "<br>"
-                            + "London, UK" + "51.5098" + "-0.118" + "<br>"
-                            + "Arau, Malaysia" + "6.4297" + "100.269";
+                            + "Sofia, Bulgaria  " +  " 42.6983 " + " 23.3199 " + "<br>"
+                            + "London, UK  " + " 51.5098 " + " -0.118 " + "<br>"
+                            + "Arau, Malaysia  " + " 6.4297 " + " 100.269 ";
     sceneDial.innerHTML = "A list of coordinates? Interesting!";
 }
 function scienceButtonHandler_l1() {

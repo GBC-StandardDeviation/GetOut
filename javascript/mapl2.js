@@ -31,7 +31,7 @@ chest_l2_2.img.src = "images/workstation.png";
 var chest_l2_3 = { //Lina
     img: new Image(),
     imgDiv: "url('images/screen.png')",
-    dial: "I'm on vacation...I love Gold Coast, I love Qu...Oh, no!",
+    dial: "Gold coast is a safe place.",
 };
 chest_l2_3.img.src = "images/workstation.png";
 var chest_l2_4 = { //Jenifer
