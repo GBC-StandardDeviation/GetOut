@@ -224,6 +224,7 @@ function openDoor_l3() {
     if(counter_l3 == 3){
         clearInterval(door_l3_Intv);
         stage.style.background = "black";
+        sceneContent.style.background = "black";
         //sceneContent.style.background = "url('images/tania.png')";
         sceneDial.style.background = "black";
         gamearea.style.background = "black";
