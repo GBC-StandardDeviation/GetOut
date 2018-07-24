@@ -1,5 +1,4 @@
 var main_l2 = {
-    //imgDiv: "url('images/screen.png')",
     dial: "You are in the midst of the room",
     invtory: "There is nothing strange!"
 };
@@ -11,7 +10,12 @@ var chest_l2 = { //Tania
     img: new Image(), //for drawing object on canvas
     imgDiv: "url('images/screen.png')",
     dial: "Hi, I'm Tania...I'm so happy today!",
-    misteryItem: ["a", "b", "c", "d"],//need to add many more characters since player has 2 chances to input up to 10 characters
+    misteryItem: ["a", "b", "c", "d", "e",
+                  "f", "g", "h", "i", "j",
+                  "k", "l", "m", "n", "o",
+                  "p", "q", "r", "s", "t",
+                  "u", "v", "w", "x", "y", "z"
+                 ],//need to add many more characters since player has 2 chances to input up to 10 characters
     isActive: false,//for Enter key press
     misteryItemMatched: false
 };
@@ -31,7 +35,7 @@ chest_l2_2.img.src = "images/workstation.png";
 var chest_l2_3 = { //Lina
     img: new Image(),
     imgDiv: "url('images/screen.png')",
-    dial: "Gold coast is a safe place.",
+    dial: "Gold Coast is a safe place.",
 };
 chest_l2_3.img.src = "images/workstation.png";
 var chest_l2_4 = { //Jenifer
@@ -66,25 +70,23 @@ var objects_l2 =
         [wall, floor, chest_l2_3.img, floor, chest_l2_2.img, floor, chest_l2.img, floor, chest_l2_1.img, wall],
         [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
         [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, wall]];
+        [setting, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, setting]];
 
 function start_l2(){
     gameStarted = true;
-    gamearea.style.background = "saddlebrown";
+    gamearea.style.background = "darkkhaki";
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(column = 0; column <= 9; column++){
         for(row = 0; row <= 9; row++){
             context.drawImage(objects_l2[row][column], column * 64, row * 64);
         }
     }
-    //player.x = 100;
-    //player.y = 265;
     context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
     moveLeft = true;
     moveRight = true;
     moveUp = true;
     moveDown = true;
-    sceneContent.style.background = "saddlebrown";
+    sceneContent.style.background = "darkkhaki";
     sceneContent.innerHTML = "";
     sceneDial.innerHTML = "";
     sceneInteract.innerHTML = "";
@@ -93,14 +95,15 @@ function start_l2(){
 function loadScene_l2() {
     if(moveLeft && moveRight && moveUp && moveDown){
         sceneContent.innerHTML = "";
-        sceneContent.style.background = "saddlebrown";
+        sceneContent.style.background = "darkkhaki";
         sceneDial.innerHTML = main_l2.dial;
         sceneInteract.innerHTML = main_l2.invtory;
         chest_l2.isActive = false;
         counter_l2 = 2;
         alreadySaid = false;
-        timerDisplay.style.color = "white";
+        timerDisplay.style.color = "black";
     }else {
+        sceneContent.style.background = scene_l2[scene_l2_Index].imgDiv;
         sceneDial.innerHTML = scene_l2[scene_l2_Index].dial;
         switch(scene_l2_Index){
             case 1: //main door to level 3
@@ -117,11 +120,11 @@ function loadScene_l2() {
                 break;
             case 2: //Tania's workstation
                 chest_l2.isActive = true;
-                sceneDial.style.color = "saddlebrown";
+                sceneDial.style.color = "black";
                 sceneContent.style.background = scene_l2[scene_l2_Index].imgDiv;
                 sceneDial.innerHTML = scene_l2[scene_l2_Index].dial;
                 sceneInteract.innerHTML = "";
-                chest_l2_ItemIndex = Math.floor(Math.random()*4);
+                chest_l2_ItemIndex = Math.floor(Math.random()*26); //26 is the length of misteryItem of chest 2
                 sceneContent.appendChild(chestImage_l2);
                 chestImage_l2.style.background = "url('images/ceo.png')";
                 chestImage_l2.style.position = "absolute";
@@ -210,6 +213,7 @@ function checkCollision_l2(e){
                 if (objects_l2[row][column] !== floor &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.x >= (column + 1) * 64 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -232,6 +236,7 @@ function checkCollision_l2(e){
                 if (objects_l2[row][column] !== floor &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= column * 64 - 32 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -254,6 +259,7 @@ function checkCollision_l2(e){
                 if (objects_l2[row][column] !== floor &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -276,6 +282,7 @@ function checkCollision_l2(e){
                 if (objects_l2[row][column] !== floor &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= (row + 1)* 64 &&

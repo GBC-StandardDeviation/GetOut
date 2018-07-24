@@ -1,13 +1,10 @@
 //variables for background
 var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
-const totalImages = 10;
 const SIZE = 64;
 var item = [];
-var loadImages = 0;
 var column;
 var row;
-var moveCounter = 2;
 var moveSpeed = 7;
 var moveLeft;// = false;
 var moveRight;// = false;
@@ -30,19 +27,39 @@ var minuteCount;
 var secondCount;
 
 var gamearea = document.querySelector("#gamearea");
+var  stage = document.querySelector("#stage");
 var sceneContent = document.querySelector("#sceneContent");
 var sceneDial = document.querySelector("#sceneDial");
 var sceneInteract = document.querySelector("#sceneInteract");
 var levelInput = document.querySelector("#levelInput");
 var levelButton = document.querySelector("#levelButton");
 var timerDisplay = document.querySelector("#timerDisplay");
-var levelNum = 1;
+var levelNum = 0;
 var startCounterIntv;
 var count;
 var timerIntv;
 var inventory = new Image();
 inventory.src = "images/box.png";
 var gameEnd = false;
+var title = new Image();
+title.src = "images/Menu/getout.png";
+var developBy = new Image();
+developBy.src = "images/Menu/createdanddev.png";
+var author = new Image();
+author.src = "images/Menu/standarddeviation.png";
+var introCounter = -1;
+var intro = [
+    "London, 26th April 2018…",
+    "The city is exposed to the toxic...",
+    "and high level of radiation...",
+    "during the unusual explosion from the Lab...",
+    "We are failed to contain the contamination...",
+    "and all the evacuation had to be delayed...",
+    "In this urgency, all the safe doors in buildings are activated...",
+    "For your own safety, find the nearest BUNKER immediately!"
+];
+var skipIntro = new Image();
+skipIntro.src = "images/Menu/skipIntro.png";
 var player = {
     x: undefined,
     y: undefined,
@@ -56,7 +73,7 @@ player.image.src = "images/player.png";
 /* wait for player to press enter to start playing */
 document.body.addEventListener("keydown", function(event){
     backgroundAudio.play();
-    if(event.keyCode == 13 && !gameStarted){
+    if(event.keyCode == 13 && !gameStarted && introEnd){
         startGame();
     }
     if (event.keyCode == 13 && gameStarted && chest_l2.isActive)
@@ -70,22 +87,46 @@ document.body.addEventListener("keypress", function(event){
 });
 window.addEventListener('keydown', movePlayer, false);
 
-intro_screen();
+var introIntv = setTimeout(intro_screen, 1000);
+var introEnd = false;
 
 /* intro screen welcoming player (display menu)*/
-function intro_screen(){
-    context.font = "50px Impact";
-    context.fillStyle = "#0099CC";
-    context.textAlign = "center";
-    context.fillText("GET OUT", canvas.width/2, canvas.height/2);
-
-    context.font = "20px Arial";
-    context.fillText("Press Enter To Start ... if you dare", canvas.width/2, canvas.height/2 + 50);
+function intro_screen() {
+    if (introCounter < 8 && !introEnd) {
+        if(introCounter == -1){
+            context.drawImage(developBy, 100, 250);
+            context.drawImage(author, 150, 300);
+            stage.style.background = "url('images/Menu/runaway.gif')";
+        }else {
+            stage.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = "white";
+            context.textAlign = "center";
+            context.font = "20px Georgia";
+            context.fillText(intro[introCounter], canvas.width / 2, canvas.height / 2 + 50);
+            context.drawImage(skipIntro, 270, 450);
+        }
+        setTimeout(intro_screen, 4000);
+        introCounter++;
+    } else {
+        clearTimeout(introIntv);
+        introEnd = true;
+        menu();
+    }
 }
-
+function menu() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(title, 60, 150);
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    context.font = "20px Georgia";
+    context.fillText("Press Enter To Start...", canvas.width/2, canvas.height/2 + 50);
+    //sceneContent.style.background = "url('images/tania.png')";
+    stage.style.background = "black";
+}
 function startGame(){
     context.clearRect(0,0, canvas.width, canvas.height);
-    //gameStarted = true;
+    stage.style.background = "darkkhaki";
     count = 0;
     startCounterIntv = setInterval(startCounter, 1000);
     timerIntv = setInterval(displayTimer, 1000);
@@ -113,9 +154,6 @@ function loop(){
         player.x = 100;
         player.y = 265;
         setTimeout(start_l3, 1100);
-    }else if(levelNum == 4) {
-
-        setTimeout(start_l4, 1100);
     }else sceneDial.innerHTML = "Enter level number again";
 }
 function levelButtonHandler() {
@@ -148,9 +186,6 @@ function movePlayer(e){
             }else if(levelNum == 3){
                 loadScene_l3();
                 checkCollision_l3(37);
-            }else if(levelNum == 4) {
-                loadScene_l4();
-                checkCollision_l4(37);
             }
         }
 
@@ -163,7 +198,6 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.x > SIZE + moveSpeed){
-                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.x -= moveSpeed;
             }
             player.direction = 1;
@@ -182,9 +216,6 @@ function movePlayer(e){
             }else if(levelNum == 3){
                 loadScene_l3();
                 checkCollision_l3(39);
-            }else if(levelNum == 4) {
-                loadScene_l4();
-                checkCollision_l4(39);
             }
         }
 
@@ -196,7 +227,6 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.x < canvas.width - SIZE - moveSpeed - 32){
-                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.x += moveSpeed;
             }
             player.direction = 2;
@@ -215,9 +245,6 @@ function movePlayer(e){
             }else if(levelNum == 3){
                 loadScene_l3();
                 checkCollision_l3(38);
-            }else if(levelNum == 4) {
-                loadScene_l4();
-                checkCollision_l4(38);
             }
         }
 
@@ -229,10 +256,8 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.y > SIZE + moveSpeed){
-                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.y -= moveSpeed;
             }
-
             player.direction = 3;
         }
     }
@@ -249,9 +274,6 @@ function movePlayer(e){
             }else if(levelNum == 3){
                 loadScene_l3();
                 checkCollision_l3(40);
-            }else if(levelNum == 4) {
-                loadScene_l4();
-                checkCollision_l4(40);
             }
         }
 
@@ -263,7 +285,6 @@ function movePlayer(e){
                 player.animationframe = 0;
             }
             if(player.y < canvas.height - SIZE - moveSpeed - 32){
-                //context.drawImage(floor, player.x, player.y,player.size,player.size);
                 player.y += moveSpeed;
             }
             player.direction = 0;
@@ -298,7 +319,7 @@ function startCounter() {
         clearInterval(startCounterIntv);
         levelInput.style.display = "none";
         levelButton.style.display = "none";
-        sceneContent.style.background = "saddlebrown";
+        sceneContent.style.background = "darkkhaki";
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = "";
         sceneInteract.innerHTML = "";
@@ -327,4 +348,23 @@ function end_screen(){
 function restart() {
     location.reload();
 }
-
+gamearea.addEventListener("click", getCoor, false);
+function getCoor(e) {
+    var mouseX = e.pageX;
+    var mouseY = e.pageY;
+    //sceneDial.innerHTML = mouseX + " " + mouseY;
+    if(levelNum == 3){
+        if (mouseX >= 578 && mouseX <=582 && mouseY >=531 && mouseY <= 535){ //Gold Coast, Queensland, Australia
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            gamearea.style.background = "black";
+            door_l3_Intv = setInterval(openDoor_l3, 2000);
+        }
+    }
+    if(levelNum == 0){
+        if (mouseX >= 280 && mouseX <=378 && mouseY >=460 && mouseY <= 494){ //skip Intro Button
+            introEnd = true;
+            menu();
+            clearTimeout(introIntv);
+        }
+    }
+}

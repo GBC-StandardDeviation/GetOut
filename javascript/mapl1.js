@@ -14,20 +14,17 @@ var s_shelf = new Image();
 s_shelf.src = "images/shelf.png";
 var s_bed = new Image();
 s_bed.src = "images/bed.png";
-//var l_rug = new Image();
-//l_rug.src = "images/rug.png";
+var setting = new Image();
+setting.src = "images/setting.png";
 var wall = new Image();
-wall.src = "images/wall.png";
+wall.src = "images/handpaintedwall2.png";
 
 var main_l1 = {
     dial: "What are you waiting for? Get out of the room!",
     invtory: "There is nothing strange!"
 };
 var mainDoor_l1 = {
-    //img: "url('images/window.png')",
     dial: "You reached the main door" + "<br>" + "You need a key to open",
-    //dial: "You reached the main door" + "<br>" + "Please enter 6 digit number to open",
-    //misteryItem: 515098
 };
 var chest_l1 = {
     dial: "You reached a chest"
@@ -46,16 +43,13 @@ var bookShelf_l1 = {
     invtory: ["Math Book", "History Book", "Geography Book", "Science Book"]
 };
 var dresser_l1 = {
-    //img: "url('images/dresser.png')",
     dial: "You reached a Dresser"
 };
 var smallTable_l1 = {
-    //img: "url('images/small_table.png')",
     dial: "You reached a small table"
 };
 
 var bed_l1 = {
-    //img: "url('images/bed.png')",
     dial: "You reached a bed"
 };
 
@@ -85,11 +79,11 @@ var objects_l1 =
         [wall, floor, floor, floor, floor, floor, b_table, floor, floor, wall],
         [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
         [wall, floor, floor, floor, floor, s_shelf, floor, floor, floor, wall],
-        [wall, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, wall]];
+        [setting, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, setting]];
 
 function start_l1() {
     gameStarted = true;
-    gamearea.style.background = "saddlebrown";
+    gamearea.style.background = "darkkhaki";
     drawArrow(5,7);
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(var column = 0; column <= 9; column++) {
@@ -97,14 +91,12 @@ function start_l1() {
             context.drawImage(objects_l1[row][column], column * 64, row * 64);
         }
     }
-    //player.x = 200;
-    //player.y = 200;
     context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
     moveLeft = true;
     moveRight = true;
     moveUp = true;
     moveDown = true;
-    sceneContent.style.background = "saddlebrown";
+    sceneContent.style.background = "darkkhaki";
     sceneContent.innerHTML = "";
     sceneDial.innerHTML = "Use arrow keys to move!";
     sceneInteract.innerHTML = "";
@@ -115,9 +107,10 @@ function loadScene_l1() {
         sceneDial.innerHTML = main_l1.dial;
         sceneInteract.innerHTML = main_l1.invtory;
     }else {
+        sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
         switch(scene_l1_Index){
             case 1: //main door to level 2
-                sceneContent.style.color = "white";
+                sceneContent.style.color = "black";
                 sceneInteract.innerHTML = "";
                 sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.appendChild(mainDoorInvtoryButton_l1);
@@ -126,11 +119,11 @@ function loadScene_l1() {
                 mainDoorInvtoryButton_l1.addEventListener("click", mainDoorInvtoryButtonHandler_l1, false);
                 break;
             case 2: //chest
-                sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
+                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.innerHTML = "There is nothing strange!";
                 break;
             case 3: //locker
-                sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
+                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.innerHTML = "";
                 sceneInteract.appendChild(lockerInput_l1);
                 sceneInteract.appendChild(lockerButton_l1);
@@ -141,7 +134,7 @@ function loadScene_l1() {
                 lockerButton_l1.addEventListener("click", lockerButtonHandler_l1, false);
                 break;
             case 4:
-                sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
+                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.innerHTML = "";
                 sceneInteract.appendChild(mathButton_l1);
                 sceneInteract.appendChild(historyButton_l1);
@@ -159,19 +152,30 @@ function loadScene_l1() {
                 mathButton_l1.style.left = 165 + "px";
                 mathButton_l1.style.width = 300 + "px";
                 mathButton_l1.style.height = 40 + "px";
+                mathButton_l1.style.background = "url('images/book.png')";
+                mathButton_l1.style.fontWeight = "bold";
+                mathButton_l1.style.fontSize = 25 + "px";
                 historyButton_l1.style.top = 60 + "px";
                 historyButton_l1.style.left = 165 + "px";
                 historyButton_l1.style.width = 300 + "px";
                 historyButton_l1.style.height = 40 + "px";
                 historyButton_l1.style.background = "orange";
+                historyButton_l1.style.fontWeight = "bold";
+                historyButton_l1.style.fontSize = 25 + "px";
                 geographyButton_l1.style.top = 110 + "px";
                 geographyButton_l1.style.left = 165 + "px";
                 geographyButton_l1.style.width = 300 + "px";
                 geographyButton_l1.style.height = 40 + "px";
+                geographyButton_l1.style.background = "url('images/book.png')";
+                geographyButton_l1.style.fontWeight = "bold";
+                geographyButton_l1.style.fontSize = 25 + "px";
                 scienceButton_l1.style.top = 160 + "px";
                 scienceButton_l1.style.left = 165 + "px";
                 scienceButton_l1.style.width = 300 + "px";
                 scienceButton_l1.style.height = 40 + "px";
+                scienceButton_l1.style.background = "url('images/book.png')";
+                scienceButton_l1.style.fontWeight = "bold";
+                scienceButton_l1.style.fontSize = 25 + "px";
                 mathButton_l1.addEventListener("click", mathButtonHandler_l1, false);
                 historyButton_l1.addEventListener("click", historyButtonHandler_l1, false);
                 geographyButton_l1.addEventListener("click", geographyButtonHandler_l1, false);
@@ -180,7 +184,6 @@ function loadScene_l1() {
             case 5:
             case 6:
             case 7:
-            case 8:
                 sceneInteract.innerHTML = "There is nothing strange!";
         }
     }
@@ -215,14 +218,13 @@ function keyInvtoryButtonHandler_l1() {
     setTimeout(start_l2, 1100);
     sceneInteract.removeChild(keyInvtoryButton_l1);
     sceneDial.innerHTML = "You are in room C460";
-
 }
 
 function lockerButtonHandler_l1() {
     moveAudio.play();
     if (lockerInput_l1.value == locker_l1.misteryItem){
         sceneDial.innerHTML = "";
-        sceneContent.style.color = "white";
+        sceneContent.style.color = "black";
         sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
                                 + "The locker is opened";
         sceneDial.innerHTML = "There is ";
@@ -260,7 +262,7 @@ function mathButtonHandler_l1() {
 function historyButtonHandler_l1() {
     bookAudio.play();
     sceneDial.innerHTML = "";
-    sceneContent.style.color = "white";
+    sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
                             + "A range of eschatological beliefs that" + "<br>"
                             + "transformative events would" + "<br>"
@@ -273,7 +275,7 @@ function historyButtonHandler_l1() {
 function geographyButtonHandler_l1() {
     bookAudio.play();
     sceneDial.innerHTML = "";
-    sceneContent.style.color = "white";
+    sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
                             + "Sofia, Bulgaria  " +  " 42.6983 " + " 23.3199 " + "<br>"
                             + "London, UK  " + " 51.5098 " + " -0.118 " + "<br>"
@@ -297,6 +299,7 @@ function checkCollision_l1(e){
                 if (objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.x >= (column + 1) * 64 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -319,6 +322,7 @@ function checkCollision_l1(e){
                 if (objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= column * 64 - 32 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -341,6 +345,7 @@ function checkCollision_l1(e){
                 if (objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= row * 64 - moveSpeed - 32 &&
@@ -363,6 +368,7 @@ function checkCollision_l1(e){
                 if (objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
+                    objects_l1[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= (row + 1)* 64 &&
@@ -388,8 +394,6 @@ function getScene_l1(locRow, locColumn) {
         return 5; //Dresser
     if (locRow === 4 && locColumn === 4)
         return 6; // small table
-    //if (locRow === 6 && locColumn === 4)
-    //    return 7; //rug
     if (locRow === 2 && locColumn === 8)
         return 7; //bed
 }
