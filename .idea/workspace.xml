@@ -14,83 +14,74 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main-Phaser.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main-Phaser.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state relative-caret-position="817">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map2.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/preload/map2.json">
+      <file leaf-file-name="TitleState.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/states/TitleState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="152">
+              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map3.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/preload/map3.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="map4.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/preload/map4.json">
+      <file leaf-file-name="Prefab.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/prefabs/Prefab.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map5.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/preload/map5.json">
+      <file leaf-file-name="TextPrefab.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/prefabs/TextPrefab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="65" lean-forward="true" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+            <state relative-caret-position="76">
+              <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/prefabs/world/Player.js">
+      <file leaf-file-name="AudioPrefab.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/prefabs/AudioPrefab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+            <state relative-caret-position="304">
+              <caret line="16" column="56" lean-forward="true" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Door.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/prefabs/world/Door.js">
+      <file leaf-file-name="title_screen.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/preload/title_screen.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+            <state relative-caret-position="228">
+              <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorldState.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/states/WorldState.js">
+      <file leaf-file-name="LoadingState.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/states/LoadingState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
-              <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+            <state relative-caret-position="494">
+              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserInput.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/plugins/UserInput.js">
+      <file leaf-file-name="map1.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/preload/map1.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="52" lean-forward="true" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+            <state relative-caret-position="342">
+              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -117,15 +108,11 @@
         <option value="$PROJECT_DIR$/js/states/BootState.js" />
         <option value="$PROJECT_DIR$/assets/user_inputs/world_map_user_input.js" />
         <option value="$PROJECT_DIR$/assets/user_inputs/title_user_input.json" />
-        <option value="$PROJECT_DIR$/js/states/TitleState.js" />
-        <option value="$PROJECT_DIR$/assets/preload/title_screen.json" />
         <option value="$PROJECT_DIR$/js/prefabs/world/Player.js" />
         <option value="$PROJECT_DIR$/js/states/JSONPreloadState.js" />
         <option value="$PROJECT_DIR$/js/plugins/UserInput.js" />
-        <option value="$PROJECT_DIR$/js/states/LoadingState.js" />
         <option value="$PROJECT_DIR$/assets/preload/map2.json" />
         <option value="$PROJECT_DIR$/js/prefabs/world/door.js" />
-        <option value="$PROJECT_DIR$/Main-Phaser.html" />
         <option value="$PROJECT_DIR$/js/Main.js" />
         <option value="$PROJECT_DIR$/js/prefabs/Prefab.js" />
         <option value="$PROJECT_DIR$/assets/preload/map1.json" />
@@ -134,6 +121,12 @@
         <option value="$PROJECT_DIR$/assets/preload/map3.json" />
         <option value="$PROJECT_DIR$/assets/preload/map4.json" />
         <option value="$PROJECT_DIR$/assets/preload/map5.json" />
+        <option value="$PROJECT_DIR$/js/prefabs/world/AudioPrefab.js" />
+        <option value="$PROJECT_DIR$/js/prefabs/AudioPrefab.js" />
+        <option value="$PROJECT_DIR$/Main-Phaser.html" />
+        <option value="$PROJECT_DIR$/js/states/TitleState.js" />
+        <option value="$PROJECT_DIR$/assets/preload/title_screen.json" />
+        <option value="$PROJECT_DIR$/js/states/LoadingState.js" />
       </list>
     </option>
   </component>
@@ -146,9 +139,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="688" />
-    <option name="y" value="36" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="431" />
+    <option name="y" value="27" />
     <option name="width" value="926" />
     <option name="height" value="999" />
   </component>
@@ -157,18 +150,70 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="GetOut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="audios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="preload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="user_inputs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="prefabs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Phaser-GetOut" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Phaser-GetOut" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="states" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,6 +225,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Family\Desktop\Phaser-GetOut\js\prefabs" />
       <recent name="C:\Users\Family\Desktop\Game-GetOut\js" />
     </key>
   </component>
@@ -195,16 +241,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Main-Phaser.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.Main-Phaser.html (2)">
     <configuration name="Main-Phaser.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/GetOut/Main-Phaser.html" />
-    <configuration name="Main-Phaser.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Game-GetOut/Main-Phaser.html" />
+    <configuration name="Main-Phaser.html (2)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Phaser-GetOut/Main-Phaser.html" />
+    <configuration name="Main-Phaser.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/Game-GetOut/Main-Phaser.html" />
     <list>
-      <item itemvalue="JavaScript Debug.Main-Phaser.html" />
       <item itemvalue="JavaScript Debug.Main-Phaser.html (1)" />
+      <item itemvalue="JavaScript Debug.Main-Phaser.html" />
+      <item itemvalue="JavaScript Debug.Main-Phaser.html (2)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.Main-Phaser.html" />
+        <item itemvalue="JavaScript Debug.Main-Phaser.html (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -226,32 +274,36 @@
       <workItem from="1532053403281" duration="28000" />
       <workItem from="1532062387701" duration="1859000" />
       <workItem from="1532129840972" duration="174000" />
+      <workItem from="1532402368575" duration="15000" />
+      <workItem from="1532407167948" duration="9000" />
+      <workItem from="1532407197682" duration="6850000" />
+      <workItem from="1532468468319" duration="4909000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24099000" />
+    <option name="totallyTimeSpent" value="35882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.118229166" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19583334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32910052" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32875264" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39957717" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32921347" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,20 +313,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/prefabs/world/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/states/WorldState.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="988">
@@ -456,13 +494,6 @@
     <entry file="file://$PROJECT_DIR$/assets/maps/tilemap.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/prefabs/TextPrefab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/maps/map1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-773">
@@ -470,31 +501,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/user_inputs/title_user_input.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/states/JSONPreloadState.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/LoadingState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/TitleState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -515,24 +525,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/prefabs/Prefab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/plugins/UserInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="22" column="52" lean-forward="true" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/user_inputs/world_map_user_input.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -547,27 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="988">
           <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/preload/map1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/preload/title_screen.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/prefabs/world/Door.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -595,14 +570,87 @@
     <entry file="file://$PROJECT_DIR$/assets/preload/map5.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
-          <caret line="2" column="65" lean-forward="true" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+          <caret line="2" column="65" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/prefabs/world/Door.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="25" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/map2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/user_inputs/world_map_user_input.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="43" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/user_inputs/title_user_input.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main-Phaser.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="817">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/states/TitleState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/prefabs/Prefab.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/prefabs/TextPrefab.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/prefabs/AudioPrefab.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="56" lean-forward="true" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/preload/map1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/preload/title_screen.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/states/LoadingState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
         </state>
       </provider>
     </entry>

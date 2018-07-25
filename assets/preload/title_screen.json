@@ -1,18 +1,28 @@
 {
   "assets": {
-    "background_image": {"type": "image", "source": "assets/images/background.png"}
+    "background_image": {
+      "type": "image",
+      "source": "assets/images/background.png"
+    }
+  },
+  "audios":{
+    "screen_sound":{
+      "type": "audio",
+      "source": "assets/audios/intro_screen_sound.wav"
+    }
   },
   "groups": [
-    "background",
-    "texts"
+    "backgrounds",
+    "texts",
+    "TitleSound"
   ],
   "prefabs": {
-    "background": {
+    "backImage": {
       "type": "background",
       "position": {"x": 0, "y": 0},
       "properties": {
         "texture": "background_image",
-        "group": "background"
+        "group": "backgrounds"
       }
     },
     "title_message": {

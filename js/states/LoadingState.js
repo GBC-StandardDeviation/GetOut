@@ -25,14 +25,24 @@ RPG.LoadingState.prototype.preload = function () {
         asset = assets[asset_key];
         switch (asset.type) {
             case "image":
-                this.load.image(asset_key, asset.source);
-                break;
+                 this.load.image(asset_key, asset.source);
+                 break;
             case "spritesheet":
                 this.load.spritesheet(asset_key, asset.source, asset.frame_width, asset.frame_height, asset.frames, asset.margin, asset.spacing);
                 break;
             case "tilemap":
                 this.load.tilemap(asset_key,asset.source,null,Phaser.Tilemap.TILED_JSON);
                 break;
+        }
+     var sounds, sound, sound_key;
+        sounds = this.level_data.audio;
+        for (sound_key in audio) { // load assets according to asset key
+            sound = sounds[sound_key];
+            switch (sound.type) {
+                case "audio":
+                    this.load.audio(sound_key, sound.source);
+                    break;
+            }
         }
         this.load.text("user_input", this.level_data.user_input);
     }
