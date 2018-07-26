@@ -49,7 +49,6 @@ var author = new Image();
 author.src = "images/Menu/standarddeviation.png";
 var introCounter = -1;
 var intro = [
-<<<<<<< HEAD
 
 //intro dialog, 1 sentence per frame
 
@@ -61,16 +60,6 @@ var intro = [
     "so the evacuation had to be delayed...",
     "In this urgency, all the safe doors in buildings are activated...",
     "For your own safety, find the nearest bunker IMMEDIATELY!"
-=======
-    "London, 26th April 2018…",
-    "The city is exposed to the toxic...",
-    "and high level of radiation...",
-    "during the unusual explosion from the Lab...",
-    "We are failed to contain the contamination...",
-    "and all the evacuation had to be delayed...",
-    "In this urgency, all the safe doors in buildings are activated...",
-    "For your own safety, find the nearest BUNKER immediately!"
->>>>>>> 5303871feff029dc852f268701612e5c5e480f8c
 ];
 var skipIntro = new Image();
 skipIntro.src = "images/Menu/skipIntro.png";
@@ -86,13 +75,9 @@ player.image.src = "images/player.png";
 
 /* wait for player to press enter to start playing */
 document.body.addEventListener("keydown", function(event){
-<<<<<<< HEAD
     //backgroundAudio.play(); - intro screen starts, but does not play music unless player has pressed any key. 
 	//copied this code into bottom of intro screen function.
 	
-=======
-    backgroundAudio.play();
->>>>>>> 5303871feff029dc852f268701612e5c5e480f8c
     if(event.keyCode == 13 && !gameStarted && introEnd){
         startGame();
     }
@@ -126,25 +111,18 @@ function intro_screen() {
             context.fillText(intro[introCounter], canvas.width / 2, canvas.height / 2 + 50);
             context.drawImage(skipIntro, 270, 450);
         }
-<<<<<<< HEAD
         setTimeout(intro_screen, 4000); //starts game after 4 seconds, regardless of player input
 		//4 seconds per screen, on main intro
 		
 		//image counter for intro
-=======
-        setTimeout(intro_screen, 4000);
->>>>>>> 5303871feff029dc852f268701612e5c5e480f8c
         introCounter++;
     } else {
         clearTimeout(introIntv);
         introEnd = true;
         menu();
     }
-<<<<<<< HEAD
 	//play background music as soon as game is loaded.
 	backgroundAudio.play();
-=======
->>>>>>> 5303871feff029dc852f268701612e5c5e480f8c
 }
 function menu() {
     context.clearRect(0, 0, canvas.width, canvas.height);
