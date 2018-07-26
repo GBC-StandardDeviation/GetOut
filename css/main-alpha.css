@@ -1,0 +1,95 @@
+
+#gamearea{
+    height:640px;
+    width:640px;
+    position:absolute;
+    z-index:0;
+    border:2px solid black;
+
+
+}
+#inventory{
+    top: 50px;
+    left:130px;
+    height:400px;
+    width:400px;
+    position:absolute;
+    display:none;
+    background-color:white;
+}
+#textBox{
+    top:550px;
+    left:20px;
+    height:80px;
+    width:620px;
+    position:absolute;
+    display:none;
+    background-color:white;
+    border:2px solid black;
+}
+#button{
+    top:20px;
+    left:500px;
+    height:20px;
+    width: 140px;
+    position:absolute;
+    display:block;
+}
+.stage{
+    float: left;
+    position: relative;
+    border: 2px black solid;
+    width: 600px;
+    height: 640px;
+    background: saddlebrown;
+    top: 0;
+    left:650px;
+}
+
+.scene{
+    position: absolute;
+    /*border: 2px black solid;*/
+    width: 590px;
+    height: 200px;
+
+
+}
+#sceneImage{
+    top: 5px;
+    left: 5px;
+}
+#sceneDial{
+    top: 220px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+#sceneInteract{
+    top: 420px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+#levelInput{
+    position: absolute;
+    top: 60px;
+    left: 150px;
+    width: 200px;
+    height: 20px;
+    display: none;
+}
+#levelButton{
+    position: absolute;
+    top: 60px;
+    left: 360px;
+    height: 25px;
+    display: none;
+}
+span{
+    color: orangered;
+}
+
