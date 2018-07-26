@@ -143,28 +143,28 @@ function loop() {
         //misteryItem: 515098
     };
     var chestLevel1 = {
-        img: "url('images/table.png')",
+        img: "url('images/b_table.png')",
         dial: "You reached a chest"
         // + "<br>" + "There is a bat on the chest"
     };
     var keyItem = "Key";
     var lockerLevel1 = {
-        img: "url('images/universal_locker2.jpg')",
+        img: "url('images/cuboard.png')",
         dial: "You reached a locker" + "<br>" + "Please enter 4 digit number to open",
         invtory: ["To Headmaster of University College London", keyItem],
         misteryItem: 2012
     };
     var bookShelfLevel1 = {
-        img: "url('images/bookshelf.png')",
+        img: "url('images/shelf.png')",
         dial: "You reached a bookShelf",
         invtory: ["Math Book", "History Book", "Geography Book", "Science Book"]
     };
     var dresserLevel1 = {
-        img: "url('images/dresser2.png')",
+        img: "url('images/dresser.png')",
         dial: "You reached a Dresser"
     };
     var smallTableLevel1 = {
-        img: "url('images/table2.png')",
+        img: "url('images/small_table.png')",
         dial: "You reached a small table"
     };
     var rugLevel1 = {
@@ -172,7 +172,7 @@ function loop() {
         dial: "You reached a rug"
     };
     var bedLevel1 = {
-        img: "url('images/single_bed_1-50.png')",
+        img: "url('images/bed.png')",
         dial: "You reached a bed"
     };
     //Game object declaration and initialization at level one --- End;
@@ -198,13 +198,13 @@ function loop() {
     floor.src = "images/floor_game2.jpg";
     floor.onload = imageLoader;
     var dresser = new Image();
-    dresser.src = "images/dresser2.png";
+    dresser.src = "images/dresser.png";
     dresser.onload = imageLoader;
     var s_table = new Image();
-    s_table.src = "images/table2.png";
+    s_table.src = "images/small_table.png";
     s_table.onload = imageLoader;
     var b_table = new Image();
-    b_table.src = "images/table.png";
+    b_table.src = "images/b_table.png";
     b_table.onload = imageLoader;
     var s_window = new Image();
     s_window.src = "images/window.png";
@@ -217,7 +217,7 @@ function loop() {
     s_shelf.src = "images/bookshelf.png";
     s_shelf.onload = imageLoader;
     var s_bed = new Image();
-    s_bed.src = "images/single_bed_1-50.png";
+    s_bed.src = "images/bed.png";
     s_bed.onload = imageLoader;
     var l_rug = new Image();
     l_rug.src = "images/rug.png";

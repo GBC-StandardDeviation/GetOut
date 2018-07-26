@@ -2,6 +2,10 @@
     font-family: getout;
     src: url("fonts/kirbyss-webfont.woff2");
 }
+body{
+	background-color: black;
+	min-width: 1300px;
+}
 #gamearea{
     float: left;
     border: 2px black solid;
