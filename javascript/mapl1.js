@@ -103,9 +103,13 @@ function start_l1() {
 }
 function loadScene_l1() {
     if(moveLeft && moveRight && moveUp && moveDown){
+        stage.style.display = "none";
+        gamearea.style.display = "block";
+        /*
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = main_l1.dial;
         sceneInteract.innerHTML = main_l1.invtory;
+        */
     }else {
         sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
         switch(scene_l1_Index){
@@ -120,6 +124,8 @@ function loadScene_l1() {
                 break;
             case 2: //chest
                 //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
+                stage.style.display = "block";
+                gamearea.style.display = "none";
                 sceneInteract.innerHTML = "There is nothing strange!";
                 break;
             case 3: //locker
