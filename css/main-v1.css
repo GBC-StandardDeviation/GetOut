@@ -26,8 +26,8 @@ body{
 }
 .scene{
     position: absolute;
-    width: 590px;
-    height: 200px;
+    /*width: 590px;
+    height: 200px;*/
     font-family: Georgia, getout, sans-serif;
 }
 #sceneContent{
@@ -39,25 +39,28 @@ body{
     text-align: center;
 }
 #sceneDial{
-    top: 300px;
-    left: 5px;
+    top: 530px;
+    left: -640px;
+	width: 640px;
     font-size: 20px;
     font-weight: bold;
     color: black;
     text-align: center;
+	
 }
 #sceneInteract{
-    top: 420px;
-    left: 5px;
+    top: 530px;
+    left: -500px;
     font-size: 20px;
     font-weight: bold;
     color: black;
     text-align: center;
+	
 }
 #levelInput{
     position: absolute;
-    top: 0px;
-    left: 100px;
+    top: 650px;
+    left: -550px;
     width: 300px;
     height: 20px;
     display: none;
@@ -65,19 +68,20 @@ body{
 }
 #levelButton{
     position: absolute;
-    top: 0px;
-    left: 410px;
+    top: 650px;
+    left: -240px;
     height: 25px;
     display: none;
     font-family: getout, sans-serif;
 }
 #timerDisplay{
     position: absolute;
-    top: 50px;
-    left: 110px;
+    top: 25px;
+    left: -640px;
+	width: 640px;
     height: 20px;
     display: none;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     color: black;
     text-align: center;

@@ -21,7 +21,10 @@ var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
 moveAudio.src = "sound/moving_sound_one.mp3";
-const totalTime = 60 * 2; //2 minute; equivalent to calling restart function 120 times;
+var gameOverAudio = new Audio();
+gameOverAudio.src = "sound/game_over.mp3";
+
+const totalTime = 60 * 5; //2 minute; equivalent to calling restart function 120 times;
 var timeLeft = totalTime;
 var minuteCount;
 var secondCount;
@@ -30,7 +33,7 @@ var gamearea = document.querySelector("#gamearea");
 var  stage = document.querySelector("#stage");
 var sceneContent = document.querySelector("#sceneContent");
 var sceneDial = document.querySelector("#sceneDial");
-var sceneInteract = document.querySelector("#sceneInteract");
+//var sceneInteract = document.querySelector("#sceneInteract");
 var levelInput = document.querySelector("#levelInput");
 var levelButton = document.querySelector("#levelButton");
 var timerDisplay = document.querySelector("#timerDisplay");
@@ -122,7 +125,7 @@ function intro_screen() {
         menu();
     }
 	//play background music as soon as game is loaded.
-	backgroundAudio.play();
+	//backgroundAudio.play();
 }
 function menu() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -136,7 +139,7 @@ function menu() {
 }
 function startGame(){
     context.clearRect(0,0, canvas.width, canvas.height);
-    stage.style.background = "darkkhaki";
+    stage.style.background = "#910021";
     count = 0;
     startCounterIntv = setInterval(startCounter, 1000);
     timerIntv = setInterval(displayTimer, 1000);
@@ -329,10 +332,10 @@ function startCounter() {
         clearInterval(startCounterIntv);
         levelInput.style.display = "none";
         levelButton.style.display = "none";
-        sceneContent.style.background = "darkkhaki";
+        sceneContent.style.background = "#575e5e";
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = "";
-        sceneInteract.innerHTML = "";
+       // sceneInteract.innerHTML = "";
         gameStarted = true;
         gameEnd = true;
     }
@@ -341,7 +344,12 @@ function displayTimer() {
     minuteCount = Math.floor(timeLeft/60);
     secondCount = timeLeft % 60;
     timeLeft --;
-    timerDisplay.innerHTML = "Time left: " + minuteCount + " minutes " + secondCount + " seconds...";
+    timerDisplay.innerHTML = "Time left: " + "<span style = 'color: #990000'>" + minuteCount + "<span style = 'color: black'>" 
+	+ " minutes " + "<span style = 'color: #990000'>" +
+	secondCount + "<span style = 'color: black'>" +" seconds...";
+	
+	
+	
     if (timeLeft === -1){
         clearInterval(timerIntv);
     }
@@ -353,8 +361,14 @@ function end_screen(){
     context.textAlign = "center";
     context.fillText("GAME OVER!", canvas.width/2, canvas.height/2);
     context.font = "20px Arial";
+	gameOverAudio.play();
+	
+	backgroundAudio.pause(); //vol 0
+	
     context.fillText("Press any key to restart!", canvas.width/2, canvas.height/2 + 50);
 }
+
+
 function restart() {
     location.reload();
 }

@@ -18,6 +18,8 @@ var setting = new Image();
 setting.src = "images/setting.png";
 var wall = new Image();
 wall.src = "images/handpaintedwall2.png";
+var floorcrack = new Image();
+floorcrack.src = "images/floormodifiers/floorcrack.png";
 
 var main_l1 = {
     dial: "What are you waiting for? Get out of the room!",
@@ -65,26 +67,26 @@ var historyButton_l1 = document.createElement("button");
 var geographyButton_l1 = document.createElement("button");
 var scienceButton_l1 = document.createElement("button");
 
-var scene_l1_Index;
+var scene_l1_Index = 0;
 var scene_l1 = [main_l1, mainDoor_l1, chest_l1, locker_l1, bookShelf_l1, dresser_l1, smallTable_l1, bed_l1];
 
 //object placement
 var objects_l1 =
     [[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
-        [wall, floor, floor, dresser, floor, floor, floor, floor, floor, wall],
+        [wall, floor, floorcrack, dresser, floorcrack, floor, floor, floor, floorcrack, wall],
         [wall, floor, floor, floor, floor, floor, floor, floor, s_bed, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, s_table, floor, floor, floor, floor, s_window],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, floor, floor, b_table, floor, floor, wall],
+        [wall, floor, floor, floor, floor, floor, floor, floor, floorcrack, wall],
+        [wall, floor, floor, floor, floorcrack, floor, floor, floor, floor, s_window],
+        [wall, floorcrack, floor, floor, floor, floor, b_table, floor, floor, wall],
         [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, floor, s_shelf, floor, floor, floor, wall],
+        [wall, floorcrack, floor, floor, floorcrack, s_shelf, floorcrack, floor, floor, wall],
+		[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
         [setting, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, setting]];
-
+		
 function start_l1() {
     gameStarted = true;
-    gamearea.style.background = "darkkhaki";
-    drawArrow(5,7);
+    gamearea.style.background = "#575e5e";
+    drawArrow(5,6);
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(var column = 0; column <= 9; column++) {
         for (var row = 0; row <= 9; row++) {
@@ -96,7 +98,7 @@ function start_l1() {
     moveRight = true;
     moveUp = true;
     moveDown = true;
-    sceneContent.style.background = "darkkhaki";
+    sceneContent.style.background = "#575e5e";
     sceneContent.innerHTML = "";
     sceneDial.innerHTML = "Use arrow keys to move!";
     sceneInteract.innerHTML = "";
@@ -107,6 +109,7 @@ function loadScene_l1() {
         sceneDial.innerHTML = main_l1.dial;
         sceneInteract.innerHTML = main_l1.invtory;
     }else {
+		console.log(scene_l1_Index);
         sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
         switch(scene_l1_Index){
             case 1: //main door to level 2
@@ -296,7 +299,8 @@ function checkCollision_l1(e){
         }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
-                if (objects_l1[row][column] !== floor &&
+                if (//objects_l1[row][column] !== floorcrack &&
+					objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -319,7 +323,8 @@ function checkCollision_l1(e){
         }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
-                if (objects_l1[row][column] !== floor &&
+                if (//objects_l1[row][column] !== floorcrack &&
+					objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -342,7 +347,8 @@ function checkCollision_l1(e){
         }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
-                if (objects_l1[row][column] !== floor &&
+                if (//objects_l1[row][column] !== floorcrack &&
+					objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -365,7 +371,8 @@ function checkCollision_l1(e){
         }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
-                if (objects_l1[row][column] !== floor &&
+                if (//objects_l1[row][column] !== floorcrack &&
+					objects_l1[row][column] !== floor &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -384,18 +391,17 @@ function checkCollision_l1(e){
 function getScene_l1(locRow, locColumn) {
     if (locRow === 4 && locColumn === 9)
         return 1; //main door
-    if (locRow === 6 && locColumn === 6 )
+    if (locRow === 5 && locColumn === 6 )
         return 2; //chest
-    if (locRow === 7 && locColumn === 1 )
+    if (locRow === 6 && locColumn === 1 )
         return 3; //locker
-    if (locRow === 8 && locColumn === 5 )
+    if (locRow === 7 && locColumn === 5 )
         return 4; //book shelf
     if (locRow === 1 && locColumn === 3)
         return 5; //Dresser
-    if (locRow === 4 && locColumn === 4)
-        return 6; // small table
     if (locRow === 2 && locColumn === 8)
         return 7; //bed
+	return 0;
 }
 
 function drawArrow(x, y) {
