@@ -12,15 +12,15 @@ var moveUp;// = false;
 var moveDown;// = false;
 
 canvas.width = 640;
-canvas.height = 640;
+canvas.height = 640 + 64;
 var gameStarted = false;
 var arrowIntv;
 var backgroundAudio = new Audio();
-backgroundAudio.src = "sound/new_backgroundsound_one.mp3";
+backgroundAudio.src = "sound/ambience_backgroundsound_two.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
-moveAudio.src = "sound/footstep.mp3";
+moveAudio.src = "sound/moving_sound_one.mp3";
 const totalTime = 60 * 2; //2 minute; equivalent to calling restart function 120 times;
 var timeLeft = totalTime;
 var minuteCount;
@@ -101,9 +101,11 @@ function intro_screen() {
         if(introCounter == -1){
             context.drawImage(developBy, 100, 250);
             context.drawImage(author, 150, 300);
-            stage.style.background = "url('images/Menu/runaway.gif')";
+            //stage.style.background = "url('images/Menu/runaway.gif')";
+            gamearea.style.background = "url('images/Menu/runaway.gif')";
         }else {
-            stage.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
+            //stage.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
+            gamearea.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.fillStyle = "white";
             context.textAlign = "center";
@@ -111,7 +113,7 @@ function intro_screen() {
             context.fillText(intro[introCounter], canvas.width / 2, canvas.height / 2 + 50);
             context.drawImage(skipIntro, 270, 450);
         }
-        setTimeout(intro_screen, 4000); //starts game after 4 seconds, regardless of player input
+        setTimeout(intro_screen, 1000); //starts game after 4 seconds, regardless of player input
 		//4 seconds per screen, on main intro
 		
 		//image counter for intro
@@ -122,7 +124,7 @@ function intro_screen() {
         menu();
     }
 	//play background music as soon as game is loaded.
-	backgroundAudio.play();
+	//backgroundAudio.play();
 }
 function menu() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -181,7 +183,7 @@ function levelButtonHandler() {
 function movePlayer(e){
     //53 x 55 player
     if(gameStarted)
-    context.clearRect(player.x, player.y,player.size,player.size);
+        context.clearRect(player.x, player.y,player.size,player.size);
     if(e.keyCode === 37){
         //left arrow
         //if player is facing left
@@ -190,6 +192,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(37);
+
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(37);
@@ -220,6 +223,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(39);
+
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(39);
@@ -249,6 +253,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(38);
+
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(38);
@@ -278,6 +283,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(40);
+
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(40);
@@ -301,6 +307,14 @@ function movePlayer(e){
         }
     }
     if(gameStarted){
+
+        if(levelNum == 1){
+            for(var column = 0; column <= 9; column++) {
+                for (var row = 0; row <= 10; row++) {
+                    context.drawImage(objects_l1[row][column], column * 64, row * 64);
+                }
+            }
+        }
         context.drawImage(
             player.image,//specifies the image to use
             player.animationframe*player.size,//the x coordinate where to start clipping
@@ -311,6 +325,7 @@ function movePlayer(e){
             player.y,//the y coordinate of where to place the image on the canvas
             player.size,//the width of the image to use
             player.size);//the height of the image to use
+
     }
 }
 function setPlayerAnimationFrame(){
@@ -362,7 +377,7 @@ gamearea.addEventListener("click", getCoor, false);
 function getCoor(e) {
     var mouseX = e.pageX;
     var mouseY = e.pageY;
-    //sceneDial.innerHTML = mouseX + " " + mouseY;
+    //timerDisplay.innerHTML = mouseX + " " + mouseY;
     if(levelNum == 3){
         if (mouseX >= 578 && mouseX <=582 && mouseY >=531 && mouseY <= 535){ //Gold Coast, Queensland, Australia
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -371,10 +386,20 @@ function getCoor(e) {
         }
     }
     if(levelNum == 0){
-        if (mouseX >= 280 && mouseX <=378 && mouseY >=460 && mouseY <= 494){ //skip Intro Button
+        if (mouseX >= 630 && mouseX <=710 && mouseY >=460 + 40 && mouseY <= 494 + 40){ //skip Intro Button
             introEnd = true;
             menu();
             clearTimeout(introIntv);
         }
     }
+}
+exitButton.addEventListener("click", exitButtonHandler, false);
+function exitButtonHandler() {
+        gamearea.style.display = "block";
+        stage.style.display = "none";
+        moveDown = true;
+        moveUp = true;
+        moveRight = true;
+        moveLeft = true;
+
 }

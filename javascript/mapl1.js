@@ -1,5 +1,6 @@
 var floor = new Image();
 floor.src = "images/tile-trans.png";
+
 var dresser = new Image();
 dresser.src = "images/dresser.png";
 var s_table = new Image();
@@ -18,6 +19,8 @@ var setting = new Image();
 setting.src = "images/setting.png";
 var wall = new Image();
 wall.src = "images/handpaintedwall2.png";
+var floorcrack = new Image();
+floorcrack.src = "images/floormodifiers/floorcrack.png";
 
 var main_l1 = {
     dial: "What are you waiting for? Get out of the room!",
@@ -36,7 +39,7 @@ keyItem_l1.img.src = "images/item/keyItem_l1.png";
 var locker_l1 = {
     dial: "You reached a locker" + "<br>" + "Please enter 4 digit number to open",
     invtory: ["", keyItem_l1.name],
-    misteryItem: 1989   //New passcode for locker
+    misteryItem: 2012
 };
 var bookShelf_l1 = {
     dial: "You reached a bookShelf",
@@ -71,14 +74,15 @@ var scene_l1 = [main_l1, mainDoor_l1, chest_l1, locker_l1, bookShelf_l1, dresser
 //object placement
 var objects_l1 =
     [[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
-        [wall, floor, floor, dresser, floor, floor, floor, floor, floor, wall],
+        [wall, floor, floorcrack, dresser, floorcrack, floor, floor, floor, floorcrack, wall],
         [wall, floor, floor, floor, floor, floor, floor, floor, s_bed, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, s_table, floor, floor, floor, floor, s_window],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+        [wall, floor, floor, floor, floor, floor, floor, floor, floorcrack, wall],
+        [wall, floor, floor, floor, floorcrack, floor, floor, floor, floor, s_window],
+        [wall, floor, floor, floor, floor, floor, floorcrack, floor, floor, wall],
         [wall, floor, floor, floor, floor, floor, b_table, floor, floor, wall],
         [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, floor, s_shelf, floor, floor, floor, wall],
+        [wall, floorcrack, floor, floor, floorcrack, s_shelf, floorcrack, floor, floor, wall],
+        [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
         [setting, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, setting]];
 
 function start_l1() {
@@ -87,7 +91,7 @@ function start_l1() {
     drawArrow(5,7);
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(var column = 0; column <= 9; column++) {
-        for (var row = 0; row <= 9; row++) {
+        for (var row = 0; row <= 10; row++) {
             context.drawImage(objects_l1[row][column], column * 64, row * 64);
         }
     }
@@ -111,6 +115,8 @@ function loadScene_l1() {
         sceneInteract.innerHTML = main_l1.invtory;
         */
     }else {
+        stage.style.display = "block";
+        gamearea.style.display = "none";
         sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
         switch(scene_l1_Index){
             case 1: //main door to level 2
@@ -124,8 +130,9 @@ function loadScene_l1() {
                 break;
             case 2: //chest
                 //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
-                stage.style.display = "block";
-                gamearea.style.display = "none";
+                //stage.style.display = "block";
+		        //stage.style.opacity = "0.7";
+                //gamearea.style.display = "block";
                 sceneInteract.innerHTML = "There is nothing strange!";
                 break;
             case 3: //locker
@@ -255,7 +262,7 @@ function keyItemButtonHandler_l1() {
     moveAudio.play();
     item.push(locker_l1.invtory.pop());
     sceneDial.innerHTML = "<span>" + "You got a: " + item[0] + "</span>";
-    context.drawImage(keyItem_l1.img, 1 * SIZE + 12, 9 * SIZE + 12);
+    context.drawImage(keyItem_l1.img, 1 * SIZE + 12, 10 * SIZE + 12);
     sceneInteract.removeChild(keyItemButton_l1);
     keyItemButton_l1.removeEventListener("click", keyItemButtonHandler_l1, false);
     drawArrow(8,4); //to the main door
@@ -270,12 +277,12 @@ function historyButtonHandler_l1() {
     sceneDial.innerHTML = "";
     sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                            + "During 1859, a powerful solar storm" + "<br>"
-                            + "disrupted telegraph systems over Europe." + "<br>"
-                            + "Another geomagnetic storm was reported in" + " " + "<span>" + "1989" + "</span>" + "<br>"
-                            + "that blacked out part of Canada, and a similar flare occurred in 2001." + "<br>"
-                            + "And the most intense flare ever measured" + "<br>"
-                            + "was on November 2003.";
+                            + "A range of eschatological beliefs that" + "<br>"
+                            + "transformative events would" + "<br>"
+                            + "occur on 21 December" + " " + "<span>" + "2012." + "</span>" + "<br>"
+                            + "The date was regarded as the end-date of" + "<br>"
+                            + "a 5,126-year-long cycle in" + "<br>"
+                            + "the Mesoamerican Long Count calendar!";
     drawArrow(1,6); //to the locker
 }
 function geographyButtonHandler_l1() {
@@ -283,10 +290,10 @@ function geographyButtonHandler_l1() {
     sceneDial.innerHTML = "";
     sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                            + "Sofia " +  " 42.6983 " + " 23.3199 " + "<br>"
-                            + "London " + " 51.5098 " + " -0.118 " + "<br>"
-                            + "Gold Coast " + " 28.0167 " + " 153.4000 ";
-    sceneDial.innerHTML = "A list of coordinates... ";
+                            + "Sofia, Bulgaria  " +  " 42.6983 " + " 23.3199 " + "<br>"
+                            + "London, UK  " + " 51.5098 " + " -0.118 " + "<br>"
+                            + "Arau, Malaysia  " + " 6.4297 " + " 100.269 ";
+    sceneDial.innerHTML = "A list of coordinates? Interesting!";
 }
 function scienceButtonHandler_l1() {
     bookAudio.play();
@@ -295,14 +302,15 @@ function scienceButtonHandler_l1() {
 }
 function checkCollision_l1(e){
     if (e === 37){
-        if (gameStarted){
+        /*if (gameStarted){
             moveRight = true;
             moveUp = true;
             moveDown = true;
-        }
+        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
+                    objects_l1[row][column] !== floorcrack &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -311,6 +319,10 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
+                    //moveLeft = false;
+                    moveDown = false;
+                    moveUp = false;
+                    moveRight = false;
                     moveLeft = false;
                     scene_l1_Index = getScene_l1(row, column);
                 }
@@ -318,14 +330,15 @@ function checkCollision_l1(e){
         }
     }
     if (e === 39){
-        if (gameStarted){
+        /*if (gameStarted){
             moveLeft = true;
             moveUp = true;
             moveDown = true;
-        }
+        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
+                    objects_l1[row][column] !== floorcrack &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -334,21 +347,26 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
+                    //moveRight = false;
+                    moveDown = false;
+                    moveUp = false;
                     moveRight = false;
+                    moveLeft = false;
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
         }
     }
     if (e === 40){
-        if(gameStarted){
+        /*if(gameStarted){
             moveLeft = true;
             moveRight = true;
             moveUp = true;
-        }
+        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
+                    objects_l1[row][column] !== floorcrack &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -357,21 +375,26 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= row * 64 - 32
                 ){
+                    //moveDown = false;
                     moveDown = false;
+                    moveUp = false;
+                    moveRight = false;
+                    moveLeft = false;
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
         }
     }
     if (e === 38){
-        if(gameStarted){
+        /*if(gameStarted){
             moveLeft = true;
             moveRight = true;
             moveDown = true;
-        }
+        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
+                    objects_l1[row][column] !== floorcrack &&
                     objects_l1[row][column] !== wall &&
                     objects_l1[row][column] !== inventory &&
                     objects_l1[row][column] !== setting &&
@@ -380,7 +403,11 @@ function checkCollision_l1(e){
                     player.y >= (row + 1)* 64 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
+                    //moveUp = false;
+                    moveDown = false;
                     moveUp = false;
+                    moveRight = false;
+                    moveLeft = false;
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
@@ -398,8 +425,8 @@ function getScene_l1(locRow, locColumn) {
         return 4; //book shelf
     if (locRow === 1 && locColumn === 3)
         return 5; //Dresser
-    if (locRow === 4 && locColumn === 4)
-        return 6; // small table
+    //if (locRow === 4 && locColumn === 4)
+    //    return 6; // small table
     if (locRow === 2 && locColumn === 8)
         return 7; //bed
 }
@@ -417,7 +444,10 @@ function drawArrow(x, y) {
                 if(x !== 8)
                     context.drawImage(arrowDown, x*SIZE, y*SIZE);
                 else context.drawImage(arrowRight, x*SIZE, y*SIZE);
-            }else context.clearRect(x*SIZE, y*SIZE, SIZE, SIZE);
+            }else {
+                context.clearRect(x*SIZE, y*SIZE, SIZE, SIZE);
+                //context.drawImage(floorcrack,x*SIZE, y*SIZE)
+            }
         }else {
             clearInterval(arrowIntv);
         }
