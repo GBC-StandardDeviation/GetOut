@@ -14,13 +14,19 @@
 <body>
 <canvas id="gamearea">Your browser does not support HTML5 canvas!</canvas>
 <!--<canvas id="inventory">Your browser does not support HTML5 canvas!</canvas>-->
+<div id = "messageBar" class="scene">
+    <img src = "images/messagebar.png" alt="messageBar"/>
+    <div id="timerDisplay"></div>
+</div>
 <div id="stage">
+
     <div id="sceneContent" class="scene"></div>
     <div id="sceneDial" class="scene"></div>
     <div id="sceneInteract" class="scene"></div>
     <input id="levelInput" placeholder="For Standard Deviation's members only!" autofocus></input>
     <button id="levelButton">Go to level</button>
-    <div id="timerDisplay"></div>
+    <button id="exitButton">Back to the room</button>
+
 </div>
 
 <script src="javascript/main-v1.js"></script>
