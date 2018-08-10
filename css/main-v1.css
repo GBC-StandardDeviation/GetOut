@@ -7,22 +7,33 @@ body{
 	min-width: 1300px;
 }
 #gamearea{
-    float: left;
+    //float: left;
+	position: absolute;
+    left: 360px;
+    top: 50px;
+    //z-index: -1;
     border: 2px black solid;
     background: black;
     transition: all, 1s;
+    background: darkkhaki;
 }
 #inventory{
     border: 2px black solid;
 }
 #stage{
-    float: left;
-    position: relative;
+    //float: left;
+    //position: relative;
+    position: absolute;
+    left: 360px;
+    top: 50px;
+    //z-index: 0;
     border: 2px black solid;
-    width: 600px;
+    width: 640px;
     height: 640px;
     background: black;
     transition: all, 1s;
+    //opacity: 0.9;
+    display: none;
 }
 .scene{
     position: absolute;
@@ -71,18 +82,33 @@ body{
     display: none;
     font-family: getout, sans-serif;
 }
+#exitButton{
+    position: absolute;
+    top: 590px;
+    left: 480px;
+    height: 25px;
+    display: block;
+    font-family: getout, sans-serif;
+}
+#messageBar{
+    position: absolute;
+    left: 440px;
+    top: 0px;
+
+}
 #timerDisplay{
     position: absolute;
-    top: 50px;
-    left: 110px;
+    top: 20px;
+    left: 80px;
     height: 20px;
-    display: none;
+    display: block;
     font-size: 20px;
     font-weight: bold;
-    color: black;
+    color: white;
     text-align: center;
     font-family: getout, sans-serif;
 }
 span{
     color: orangered;
 }
+
