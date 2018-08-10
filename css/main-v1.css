@@ -6,18 +6,32 @@ body{
 	background-color: black;
 	min-width: 1300px;
 }
-#gamearea{
-    float: left;
+#gamearea{	
+	position: absolute;
+	top: 100px;
+	float: left;
     border: 2px black solid;
     background: black;
     transition: all, 1s;
 }
 #inventory{
+	position: relative;
     border: 2px black solid;
 }
+#messageBar{
+	position: absolute;
+	left: -550px;
+	top: -75px;
+	
+}
 #stage{
+	position: absolute;
+	top: 60px;
+	left: 640px;
+	
     float: left;
     position: relative;
+	
     border: 2px black solid;
     width: 600px;
     height: 640px;
@@ -26,12 +40,12 @@ body{
 }
 .scene{
     position: absolute;
-    /*width: 590px;
+    /*width: 590px
     height: 200px;*/
     font-family: Georgia, getout, sans-serif;
 }
 #sceneContent{
-    top: 80px;
+    top: 100px;
     left: 5px;
     width: 590px;
     height: 320px;
@@ -39,18 +53,18 @@ body{
     text-align: center;
 }
 #sceneDial{
-    top: 530px;
-    left: -640px;
-	width: 640px;
+    top: -20px;
+    left: -470px;
+	width: 300px;
     font-size: 20px;
     font-weight: bold;
-    color: black;
+    color: white;
     text-align: center;
-	
+	font-family: getout, sans-serif;
 }
 #sceneInteract{
-    top: 530px;
-    left: -500px;
+    top: 275px;
+    left: -550px;
     font-size: 20px;
     font-weight: bold;
     color: black;
@@ -75,13 +89,13 @@ body{
     font-family: getout, sans-serif;
 }
 #timerDisplay{
-    position: absolute;
-    top: 25px;
-    left: -640px;
+    position: relative;
+    top: -55px;
+    left: -600px;
 	width: 640px;
     height: 20px;
     display: none;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     color: black;
     text-align: center;

@@ -125,7 +125,7 @@ function intro_screen() {
         menu();
     }
 	//play background music as soon as game is loaded.
-	//backgroundAudio.play();
+	backgroundAudio.play();
 }
 function menu() {
     context.clearRect(0, 0, canvas.width, canvas.height);
