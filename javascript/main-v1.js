@@ -16,7 +16,7 @@ canvas.height = 640;
 var gameStarted = false;
 var arrowIntv;
 var backgroundAudio = new Audio();
-backgroundAudio.src = "sound/ambience_backgroundsound_one.mp3";
+backgroundAudio.src = "sound/new_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
