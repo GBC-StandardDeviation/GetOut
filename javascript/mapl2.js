@@ -1,6 +1,6 @@
 var main_l2 = {
     dial: "You are in the midst of the room",
-    invtory: "There is nothing strange!"
+    //invtory: "There is nothing strange!"
 };
 var mainDoor_l2 = {
     imgDiv: "url('images/tile-trans.png')",
@@ -9,13 +9,14 @@ var mainDoor_l2 = {
 var chest_l2 = { //Tania
     img: new Image(), //for drawing object on canvas
     imgDiv: "url('images/screen.png')",
-    dial: "Hi, I'm Tania...I'm so happy today!",
-    misteryItem: ["a", "b", "c", "d", "e",
+    dial: "My favorite is alphabetical games!",
+    misteryItem: ["a", "b", "e", "o", "i"]
+                /*["a", "b", "c", "d", "e",
                   "f", "g", "h", "i", "j",
                   "k", "l", "m", "n", "o",
                   "p", "q", "r", "s", "t",
                   "u", "v", "w", "x", "y", "z"
-                 ],//need to add many more characters since player has 2 chances to input up to 10 characters
+                 ]*/,
     isActive: false,//for Enter key press
     misteryItemMatched: false
 };
@@ -62,86 +63,73 @@ var counter_l2 = 2; //the max number of times player enters text to chat with Ta
 var alreadySaid = false;
 var objects_l2 =
     [[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, chest_l2_4.img, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+        [wall, floorcrack, floor, floor, floor, floor, floorcrack, floor, floor, wall],
+        [wall, chest_l2_4.img, floor, floorcrack, floor, floor, floor, floor, floorcrack, wall],
+        [wall, floorcrack, floor, floor, floor, floor, floor, floor, floor, wall],
         [s_window, floor, floor, floor, floor, floor, floor, floor, floor, s_window],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, chest_l2_3.img, floor, chest_l2_2.img, floor, chest_l2.img, floor, chest_l2_1.img, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
-        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+        [wall, floor, floor, floor, floor, floorcrack, floor, floor, floorcrack, wall],
+        [wall, floorcrack, chest_l2_3.img, floor, chest_l2_2.img, floor, chest_l2.img, floor, chest_l2_1.img, wall],
+        [wall, floor, floor, floor, floorcrack, floor, floor, floor, floor, wall],
+        [wall, floor, floorcrack, floor, floor, floor, floor, floorcrack, floor, wall],
+        [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
         [setting, inventory, inventory, inventory, inventory, inventory, inventory, inventory, inventory, setting]];
 
 function start_l2(){
     gameStarted = true;
-    gamearea.style.background = "darkkhaki";
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(column = 0; column <= 9; column++){
-        for(row = 0; row <= 9; row++){
+        for(row = 0; row <= 10; row++){
             context.drawImage(objects_l2[row][column], column * 64, row * 64);
         }
     }
     context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
-    moveLeft = true;
-    moveRight = true;
-    moveUp = true;
-    moveDown = true;
-    sceneContent.style.background = "darkkhaki";
-    sceneContent.innerHTML = "";
-    sceneDial.innerHTML = "";
-    sceneInteract.innerHTML = "";
+    unlockPlayer();
+    gamearea.style.display = "block";
+    stage.style.display = "none";
 }
 
 function loadScene_l2() {
     if(moveLeft && moveRight && moveUp && moveDown){
+        stage.style.display = "none";
+        gamearea.style.display = "block";
+        sceneInteract.innerHTML = "";
         sceneContent.innerHTML = "";
-        sceneContent.style.background = "darkkhaki";
         sceneDial.innerHTML = main_l2.dial;
-        sceneInteract.innerHTML = main_l2.invtory;
         chest_l2.isActive = false;
         counter_l2 = 2;
         alreadySaid = false;
-        timerDisplay.style.color = "black";
     }else {
-        sceneContent.style.background = scene_l2[scene_l2_Index].imgDiv;
+        stage.style.display = "block";
+        gamearea.style.display = "none";
+        sceneInteract.innerHTML = "";
         sceneDial.innerHTML = scene_l2[scene_l2_Index].dial;
+        sceneContent.style.background = scene_l2[scene_l2_Index].imgDiv;
         switch(scene_l2_Index){
             case 1: //main door to level 3
+                stage.style.display = "none";
+                gamearea.style.display = "block";
                 gameStarted = false;
                 levelNum = 3;
-                moveLeft = false;
-                moveRight = false;
-                moveUp = false;
-                moveDown = false;
-                gamearea.style.background = "black";
-                context.clearRect(0, 0 , canvas.width, canvas.height);
-                setTimeout(start_l3, 1100);
-                sceneDial.innerHTML = "You are in the meeting room";
+                setTimeout(start_l3, 500);
                 break;
             case 2: //Tania's workstation
                 chest_l2.isActive = true;
-                sceneDial.style.color = "black";
-                sceneContent.style.background = scene_l2[scene_l2_Index].imgDiv;
-                sceneDial.innerHTML = scene_l2[scene_l2_Index].dial;
                 sceneInteract.innerHTML = "";
-                chest_l2_ItemIndex = Math.floor(Math.random()*26); //26 is the length of misteryItem of chest 2
+                chest_l2_ItemIndex = Math.floor(Math.random()*5); //5 is the length of misteryItem of chest 2
                 sceneContent.appendChild(chestImage_l2);
                 chestImage_l2.style.background = "url('images/ceo.png')";
                 chestImage_l2.style.position = "absolute";
                 chestImage_l2.style.width = 150 + "px";
                 chestImage_l2.style.height = 150 + "px";
                 chestImage_l2.style.top = 50 + "px";
-                chestImage_l2.style.left =  220 + "px";
-                sceneInteract.innerHTML = "Enter text below to chat with her";
+                chestImage_l2.style.left =  240 + "px";
                 sceneInteract.appendChild(chestInput_l2);
                 sceneInteract.appendChild(chestButton_l2);
-                chestInput_l2.style.position = "absolute";
-                chestInput_l2.style.top = 100 + "px";
-                chestInput_l2.style.left = 150 + "px";
-                chestButton_l2.style.position = "absolute";
-                chestButton_l2.style.top = 100 + "px";
-                chestButton_l2.style.left = 330 + "px";
-                chestInput_l2.placeholder = "Can you guess what I want!";
+                chestInput_l2.className = "input";
+                chestInput_l2.style.width = "300px";
+                chestButton_l2.className = "button";
+                chestButton_l2.style.marginTop = "10px";
+                chestInput_l2.placeholder = "Enter text here to chat with me";
                 chestInput_l2.focus();
                 chestButton_l2.innerHTML = "Press Enter";
                 chestButton_l2.style.background = "orange";
@@ -151,8 +139,15 @@ function loadScene_l2() {
             case 4: // chest 2 - David's workstation
             case 5: // chest 3 - Lina's workstation
             case 6: // chest 4 - Jenifer's workstation
+                break;
             case 7: // main door to level 1
-                //sceneInteract.innerHTML = "There is nothing strange!";
+                gameStarted = false;
+                stage.style.display = "none";
+                gamearea.style.display = "block";
+                levelNum = 1;
+                player.x = 530;
+                player.y = 260;
+                setTimeout(start_l1, 500);
                 break;
         }
     }
@@ -167,7 +162,6 @@ function chestButtonHandler_l2() {
 }
 
 function wakeUp_l2() {
-    console.log(player_l2_talkInventory);
     if(player_l2_talkInventory.length != 0){
         for(i = 0; i <player_l2_talkInventory.length; i++){
             if(player_l2_talk == player_l2_talkInventory[i]) {
@@ -203,92 +197,76 @@ function wakeUp_l2() {
 
 function checkCollision_l2(e){
     if (e === 37){
-        if (gameStarted){
-            moveRight = true;
-            moveUp = true;
-            moveDown = true;
-        }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l2[row][column] !== floor &&
+                    objects_l2[row][column] !== floorcrack &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
-                    objects_l1[row][column] !== setting &&
+                    objects_l2[row][column] !== setting &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.x >= (column + 1) * 64 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    moveLeft = false;
+                    lockPlayer();
                     scene_l2_Index = getScene_l2(row, column);
                 }
             }
         }
     }
     if (e === 39){
-        if (gameStarted){
-            moveLeft = true;
-            moveUp = true;
-            moveDown = true;
-        }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l2[row][column] !== floor &&
+                    objects_l2[row][column] !== floorcrack &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
-                    objects_l1[row][column] !== setting &&
+                    objects_l2[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= column * 64 - 32 &&
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    moveRight = false;
+                    lockPlayer();
                     scene_l2_Index = getScene_l2(row, column);
                 }
             }
         }
     }
     if (e === 40){
-        if(gameStarted){
-            moveLeft = true;
-            moveRight = true;
-            moveUp = true;
-        }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l2[row][column] !== floor &&
+                    objects_l2[row][column] !== floorcrack &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
-                    objects_l1[row][column] !== setting &&
+                    objects_l2[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= row * 64 - 32
                 ){
-                    moveDown = false;
+                    lockPlayer();
                     scene_l2_Index = getScene_l2(row, column);
                 }
             }
         }
     }
     if (e === 38){
-        if(gameStarted){
-            moveLeft = true;
-            moveRight = true;
-            moveDown = true;
-        }
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l2[row][column] !== floor &&
+                    objects_l2[row][column] !== floorcrack &&
                     objects_l2[row][column] !== wall &&
                     objects_l2[row][column] !== inventory &&
-                    objects_l1[row][column] !== setting &&
+                    objects_l2[row][column] !== setting &&
                     player.x >= column * 64 - moveSpeed - 32 &&
                     player.x <= (column + 1) * 64 + moveSpeed &&
                     player.y >= (row + 1)* 64 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    moveUp = false;
+                    lockPlayer();
                     scene_l2_Index = getScene_l2(row, column);
                 }
             }

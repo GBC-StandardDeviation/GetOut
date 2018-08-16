@@ -6,22 +6,22 @@ var item = [];
 var column;
 var row;
 var moveSpeed = 7;
-var moveLeft;// = false;
-var moveRight;// = false;
-var moveUp;// = false;
-var moveDown;// = false;
+var moveLeft = false;
+var moveRight = false;
+var moveUp = false;
+var moveDown = false;
 
 canvas.width = 640;
 canvas.height = 640 + 64;
 var gameStarted = false;
 var arrowIntv;
 var backgroundAudio = new Audio();
-backgroundAudio.src = "sound/ambience_backgroundsound_two.mp3";
+backgroundAudio.src = "sound/new_backgroundsound_one.mp3";
 var bookAudio = new Audio();
 bookAudio.src = "sound/book_flipping.mp3";
 var moveAudio = new Audio();
 moveAudio.src = "sound/moving_sound_one.mp3";
-const totalTime = 60 * 2; //2 minute; equivalent to calling restart function 120 times;
+const totalTime = 60 * 5; //2 minute; equivalent to calling restart function 120 times;
 var timeLeft = totalTime;
 var minuteCount;
 var secondCount;
@@ -34,6 +34,8 @@ var sceneInteract = document.querySelector("#sceneInteract");
 var levelInput = document.querySelector("#levelInput");
 var levelButton = document.querySelector("#levelButton");
 var timerDisplay = document.querySelector("#timerDisplay");
+var messageBar = document.querySelector("#messageBar");
+var exitButton = document.querySelector("#exitButton");
 var levelNum = 0;
 var startCounterIntv;
 var count;
@@ -48,6 +50,7 @@ developBy.src = "images/Menu/createdanddev.png";
 var author = new Image();
 author.src = "images/Menu/standarddeviation.png";
 var introCounter = -1;
+var win = false;
 var intro = [
 
 //intro dialog, 1 sentence per frame
@@ -92,19 +95,20 @@ document.body.addEventListener("keypress", function(event){
 });
 window.addEventListener('keydown', movePlayer, false);
 
-var introIntv = setTimeout(intro_screen, 1000);
+var introIntv = setInterval(intro_screen, 3000);
 var introEnd = false;
 
 /* intro screen welcoming player (display menu)*/
 function intro_screen() {
+
     if (introCounter < 8 && !introEnd) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
         if(introCounter == -1){
             context.drawImage(developBy, 100, 250);
             context.drawImage(author, 150, 300);
-            //stage.style.background = "url('images/Menu/runaway.gif')";
-            gamearea.style.background = "url('images/Menu/runaway.gif')";
-        }else {
-            //stage.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
+            //gamearea.style.background = "url('images/Menu/runaway.gif')";
+            gamearea.style.background = "black";
+        }else if (introCounter >=0 && introCounter <= 6){
             gamearea.style.background = "url('images/Menu/intro" + introCounter + ".jpg')";
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.fillStyle = "white";
@@ -112,19 +116,26 @@ function intro_screen() {
             context.font = "20px Georgia";
             context.fillText(intro[introCounter], canvas.width / 2, canvas.height / 2 + 50);
             context.drawImage(skipIntro, 270, 450);
+        }else {
+            gamearea.style.background = "black";
+            context.fillText(intro[introCounter], canvas.width / 2, canvas.height / 2 + 50);
         }
-        setTimeout(intro_screen, 1000); //starts game after 4 seconds, regardless of player input
-		//4 seconds per screen, on main intro
+        gamearea.style.backgroundRepeat = "no-repeat";
+        gamearea.style.backgroundSize = "640'px' 640'px'";
+
+        //setTimeout(intro_screen, 3000); //starts game after 3 seconds, regardless of player input
+		//3 seconds per screen, on main intro
 		
 		//image counter for intro
         introCounter++;
     } else {
-        clearTimeout(introIntv);
+        clearInterval(introIntv);
         introEnd = true;
         menu();
     }
 	//play background music as soon as game is loaded.
-	//backgroundAudio.play();
+	backgroundAudio.play();
+    backgroundAudio.loop = true;
 }
 function menu() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -133,49 +144,50 @@ function menu() {
     context.textAlign = "center";
     context.font = "20px Georgia";
     context.fillText("Press Enter To Start...", canvas.width/2, canvas.height/2 + 50);
-    //sceneContent.style.background = "url('images/tania.png')";
-    stage.style.background = "black";
+    gamearea.style.background = "url('images/Menu/runaway.gif')";
+    gamearea.style.backgroundRepeat = "no-repeat";
+    gamearea.style.backgroundSize = "640'px' 640'px'";
 }
 function startGame(){
     context.clearRect(0,0, canvas.width, canvas.height);
-    stage.style.background = "darkkhaki";
     count = 0;
     startCounterIntv = setInterval(startCounter, 1000);
     timerIntv = setInterval(displayTimer, 1000);
     timerDisplay.style.display = "block";
+    messageBar.style.display = "block";
     levelInput.style.display = "block";
     levelButton.style.display = "block";
     levelButton.addEventListener("click", levelButtonHandler, false);
     levelNum = 1;
+    gamearea.style.background = "gray";
     loop();
 }
 /* start game loop */
 function loop(){
-    console.log(levelNum);
     context.clearRect(0, 0 , canvas.width, canvas.height);
-    gamearea.style.background = "black";
+    //gamearea.style.background = "black";
     if (levelNum == 1){
-        player.x = 200;
-        player.y = 200;
-        setTimeout(start_l1, 1100);
+        player.x = 480;
+        player.y = 150;
+        //setTimeout(start_l1, 3000);
+        start_l1();
     }else if(levelNum == 2){
         player.x = 100;
         player.y = 265;
-        setTimeout(start_l2, 1100);
+        //setTimeout(start_l2, 1100);
+        start_l2();
     }else if(levelNum == 3) {
         player.x = 100;
         player.y = 265;
-        setTimeout(start_l3, 1100);
+        //setTimeout(start_l3, 1100);
+        start_l3();
     }else sceneDial.innerHTML = "Enter level number again";
 }
 function levelButtonHandler() {
     moveAudio.play();
     clearInterval(arrowIntv);
     gameStarted = false;
-    moveLeft = false;
-    moveRight = false;
-    moveUp = false;
-    moveDown = false;
+    lockPlayer();
     levelNum = levelInput.value;
     loop();
 }
@@ -192,7 +204,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(37);
-
+                context.clearRect(100, 310, canvas.width - 100, 30); //delete move instruction
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(37);
@@ -223,7 +235,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(39);
-
+                context.clearRect(100, 310, canvas.width - 100, 30); //delete move instruction
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(39);
@@ -253,7 +265,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(38);
-
+                context.clearRect(100, 310, canvas.width - 100, 30); //delete move instruction
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(38);
@@ -283,7 +295,7 @@ function movePlayer(e){
             if(levelNum == 1){
                 loadScene_l1();
                 checkCollision_l1(40);
-
+                context.clearRect(100, 310, canvas.width - 100, 30); //delete move instruction
             }else if(levelNum == 2){
                 loadScene_l2();
                 checkCollision_l2(40);
@@ -300,7 +312,7 @@ function movePlayer(e){
             else{
                 player.animationframe = 0;
             }
-            if(player.y < canvas.height - SIZE - moveSpeed - 32){
+            if(player.y < canvas.height - 2*SIZE - moveSpeed - 32){
                 player.y += moveSpeed;
             }
             player.direction = 0;
@@ -310,8 +322,22 @@ function movePlayer(e){
 
         if(levelNum == 1){
             for(var column = 0; column <= 9; column++) {
-                for (var row = 0; row <= 10; row++) {
+                for (var row = 0; row <= 9; row++) { //not redraw row 10th - inventory
                     context.drawImage(objects_l1[row][column], column * 64, row * 64);
+                }
+            }
+        }
+        if(levelNum == 2){
+            for(var column = 0; column <= 9; column++) {
+                for (var row = 0; row <= 9; row++) { //not redraw row 10th - inventory
+                    context.drawImage(objects_l2[row][column], column * 64, row * 64);
+                }
+            }
+        }
+        if(levelNum == 3){
+            for(var column = 0; column <= 9; column++) {
+                for (var row = 0; row <= 9; row++) { //not redraw row 10th - inventory
+                    context.drawImage(objects_l3[row][column], column * 64, row * 64);
                 }
             }
         }
@@ -344,7 +370,7 @@ function startCounter() {
         clearInterval(startCounterIntv);
         levelInput.style.display = "none";
         levelButton.style.display = "none";
-        sceneContent.style.background = "darkkhaki";
+        //sceneContent.style.background = "darkkhaki";
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = "";
         sceneInteract.innerHTML = "";
@@ -375,31 +401,51 @@ function restart() {
 }
 gamearea.addEventListener("click", getCoor, false);
 function getCoor(e) {
-    var mouseX = e.pageX;
-    var mouseY = e.pageY;
+    var mouseX = e.offsetX;
+    var mouseY = e.offsetY;
     //timerDisplay.innerHTML = mouseX + " " + mouseY;
     if(levelNum == 3){
-        if (mouseX >= 578 && mouseX <=582 && mouseY >=531 && mouseY <= 535){ //Gold Coast, Queensland, Australia
+        if (mouseX >= 570 && mouseX <=574 && mouseY >=521 && mouseY <= 535){ //Gold Coast, Queensland, Australia
             context.clearRect(0, 0, canvas.width, canvas.height);
             gamearea.style.background = "black";
             door_l3_Intv = setInterval(openDoor_l3, 2000);
+            win = true;
+        }
+        if(!win){
+            context.drawImage(desk_l3.map, 0, 0);
+            context.beginPath();
+            context.arc(mouseX, mouseY, 10, 0, 2*Math.PI);
+            context.fillStyle = "red";
+            context.fill();
         }
     }
     if(levelNum == 0){
-        if (mouseX >= 630 && mouseX <=710 && mouseY >=460 + 40 && mouseY <= 494 + 40){ //skip Intro Button
+        if (mouseX >= 270 && mouseX <=370 && mouseY >=450 && mouseY <= 480){ //skip Intro Button
             introEnd = true;
+            clearInterval(introIntv);
             menu();
-            clearTimeout(introIntv);
         }
     }
 }
 exitButton.addEventListener("click", exitButtonHandler, false);
 function exitButtonHandler() {
-        gamearea.style.display = "block";
-        stage.style.display = "none";
-        moveDown = true;
-        moveUp = true;
-        moveRight = true;
-        moveLeft = true;
-
+    unlockPlayer();
+    gamearea.style.display = "block";
+    stage.style.display = "none";
+    if(instructArrow == 1)
+        drawArrow(1,6); //to the locker
+    if(instructArrow == 2)
+       drawArrow(8,4); //to the main door
+}
+function lockPlayer() {
+    moveDown = false;
+    moveUp = false;
+    moveRight = false;
+    moveLeft = false;
+}
+function unlockPlayer() {
+    moveDown = true;
+    moveUp = true;
+    moveRight = true;
+    moveLeft = true;
 }

@@ -21,6 +21,7 @@ var wall = new Image();
 wall.src = "images/handpaintedwall2.png";
 var floorcrack = new Image();
 floorcrack.src = "images/floormodifiers/floorcrack.png";
+var instructArrow = 0;
 
 var main_l1 = {
     dial: "What are you waiting for? Get out of the room!",
@@ -78,8 +79,8 @@ var objects_l1 =
         [wall, floor, floor, floor, floor, floor, floor, floor, s_bed, wall],
         [wall, floor, floor, floor, floor, floor, floor, floor, floorcrack, wall],
         [wall, floor, floor, floor, floorcrack, floor, floor, floor, floor, s_window],
-        [wall, floor, floor, floor, floor, floor, floorcrack, floor, floor, wall],
-        [wall, floor, floor, floor, floor, floor, b_table, floor, floor, wall],
+        [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+        [wall, floor, floor, floor, floor, floorcrack, b_table, floor, floor, wall],
         [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
         [wall, floorcrack, floor, floor, floorcrack, s_shelf, floorcrack, floor, floor, wall],
         [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
@@ -87,7 +88,6 @@ var objects_l1 =
 
 function start_l1() {
     gameStarted = true;
-    gamearea.style.background = "darkkhaki";
     drawArrow(5,7);
     context.clearRect(0, 0 , canvas.width, canvas.height);
     for(var column = 0; column <= 9; column++) {
@@ -96,58 +96,55 @@ function start_l1() {
         }
     }
     context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
-    moveLeft = true;
-    moveRight = true;
-    moveUp = true;
-    moveDown = true;
-    sceneContent.style.background = "darkkhaki";
-    sceneContent.innerHTML = "";
-    sceneDial.innerHTML = "Use arrow keys to move!";
-    sceneInteract.innerHTML = "";
+    unlockPlayer();
+    context.font = "20px Impact";
+    context.fillStyle = "black";
+    context.textAlign = "center";
+    context.fillText("Use arrow keys to move!", canvas.width/2, canvas.height/2 - 20);
+    gamearea.style.display = "block";
+    stage.style.display = "none";
 }
 function loadScene_l1() {
     if(moveLeft && moveRight && moveUp && moveDown){
         stage.style.display = "none";
         gamearea.style.display = "block";
-        /*
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = main_l1.dial;
         sceneInteract.innerHTML = main_l1.invtory;
-        */
+        instructArrow = 0; //not draw instruction Arrow
     }else {
         stage.style.display = "block";
         gamearea.style.display = "none";
         sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
         switch(scene_l1_Index){
             case 1: //main door to level 2
-                sceneContent.style.color = "black";
                 sceneInteract.innerHTML = "";
-                sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.appendChild(mainDoorInvtoryButton_l1);
                 mainDoorInvtoryButton_l1.innerHTML = "Click to open Inventory";
-                mainDoorInvtoryButton_l1.style.background = "orange";
+                mainDoorInvtoryButton_l1.style.background = "darkorange";
                 mainDoorInvtoryButton_l1.addEventListener("click", mainDoorInvtoryButtonHandler_l1, false);
+                mainDoorInvtoryButton_l1.className = "button";
+                instructArrow = 0;
                 break;
             case 2: //chest
-                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
-                //stage.style.display = "block";
-		        //stage.style.opacity = "0.7";
-                //gamearea.style.display = "block";
                 sceneInteract.innerHTML = "There is nothing strange!";
+                instructArrow = 0;
                 break;
             case 3: //locker
-                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.innerHTML = "";
                 sceneInteract.appendChild(lockerInput_l1);
                 sceneInteract.appendChild(lockerButton_l1);
                 lockerInput_l1.placeholder = "Enter 4 digit number!";
                 lockerInput_l1.focus();
                 lockerButton_l1.innerHTML = "Click to Open!";
-                lockerButton_l1.style.background = "orange";
+                lockerButton_l1.style.background = "darkorange";
                 lockerButton_l1.addEventListener("click", lockerButtonHandler_l1, false);
+                lockerButton_l1.className = "button";
+                lockerButton_l1.style.marginTop = "10px";
+                lockerInput_l1.className = "input";
+                instructArrow = 2;
                 break;
             case 4:
-                //sceneDial.innerHTML = scene_l1[scene_l1_Index].dial;
                 sceneInteract.innerHTML = "";
                 sceneInteract.appendChild(mathButton_l1);
                 sceneInteract.appendChild(historyButton_l1);
@@ -157,47 +154,27 @@ function loadScene_l1() {
                 historyButton_l1.innerHTML = bookShelf_l1.invtory[1];
                 geographyButton_l1.innerHTML = bookShelf_l1.invtory[2];
                 scienceButton_l1.innerHTML = bookShelf_l1.invtory[3];
-                mathButton_l1.style.position = "absolute";
-                historyButton_l1.style.position = "absolute";
-                geographyButton_l1.style.position = "absolute";
-                scienceButton_l1.style.position = "absolute";
-                mathButton_l1.style.top = 10 + "px";
-                mathButton_l1.style.left = 165 + "px";
-                mathButton_l1.style.width = 300 + "px";
-                mathButton_l1.style.height = 40 + "px";
-                mathButton_l1.style.background = "url('images/book.png')";
-                mathButton_l1.style.fontWeight = "bold";
-                mathButton_l1.style.fontSize = 25 + "px";
-                historyButton_l1.style.top = 60 + "px";
-                historyButton_l1.style.left = 165 + "px";
-                historyButton_l1.style.width = 300 + "px";
-                historyButton_l1.style.height = 40 + "px";
-                historyButton_l1.style.background = "orange";
-                historyButton_l1.style.fontWeight = "bold";
-                historyButton_l1.style.fontSize = 25 + "px";
-                geographyButton_l1.style.top = 110 + "px";
-                geographyButton_l1.style.left = 165 + "px";
-                geographyButton_l1.style.width = 300 + "px";
-                geographyButton_l1.style.height = 40 + "px";
-                geographyButton_l1.style.background = "url('images/book.png')";
-                geographyButton_l1.style.fontWeight = "bold";
-                geographyButton_l1.style.fontSize = 25 + "px";
-                scienceButton_l1.style.top = 160 + "px";
-                scienceButton_l1.style.left = 165 + "px";
-                scienceButton_l1.style.width = 300 + "px";
-                scienceButton_l1.style.height = 40 + "px";
-                scienceButton_l1.style.background = "url('images/book.png')";
-                scienceButton_l1.style.fontWeight = "bold";
-                scienceButton_l1.style.fontSize = 25 + "px";
+                mathButton_l1.style.margin = "auto";
+                historyButton_l1.style.margin = "auto";
+                geographyButton_l1.style.margin = "auto";
+                scienceButton_l1.style.margin = "auto";
+                mathButton_l1.className = "book";
+                historyButton_l1.className = "book";
+                geographyButton_l1.className = "book";
+                scienceButton_l1.className = "book";
+                historyButton_l1.style.background = "darkorange";
                 mathButton_l1.addEventListener("click", mathButtonHandler_l1, false);
                 historyButton_l1.addEventListener("click", historyButtonHandler_l1, false);
                 geographyButton_l1.addEventListener("click", geographyButtonHandler_l1, false);
                 scienceButton_l1.addEventListener("click", scienceButtonHandler_l1, false);
+                instructArrow = 1;
                 break;
             case 5:
             case 6:
             case 7:
                 sceneInteract.innerHTML = "There is nothing strange!";
+                instructArrow = 0;
+                break;
         }
     }
 }
@@ -207,7 +184,8 @@ function mainDoorInvtoryButtonHandler_l1() {
         if(item[i] === keyItem_l1.name){
             sceneInteract.appendChild(keyInvtoryButton_l1);
             keyInvtoryButton_l1.innerHTML = "Click to use the Key";
-            keyInvtoryButton_l1.style.background = "orange";
+            keyInvtoryButton_l1.style.background = "darkorange";
+            keyInvtoryButton_l1.className = "button";
             keyInvtoryButton_l1.addEventListener("click", keyInvtoryButtonHandler_l1, false);
             sceneInteract.removeChild(mainDoorInvtoryButton_l1);
             mainDoorInvtoryButton_l1.removeEventListener("click", mainDoorInvtoryButtonHandler_l1, false);
@@ -216,37 +194,29 @@ function mainDoorInvtoryButtonHandler_l1() {
 }
 function keyInvtoryButtonHandler_l1() {
     moveAudio.play();
-    sceneDial.innerHTML = "The door is opened";
+    sceneDial.innerHTML = "";
     context.drawImage(inventory, 1 * SIZE, 9 * SIZE);
     gameStarted = false;
     levelNum = 2;
-    moveLeft = false;
-    moveRight = false;
-    moveUp = false;
-    moveDown = false;
-    context.clearRect(0, 0 , canvas.width, canvas.height);
-    gamearea.style.background = "black";
+    lockPlayer();
     player.x = 100;
     player.y = 265;
-    setTimeout(start_l2, 1100);
+    setTimeout(start_l2, 1500);
     sceneInteract.removeChild(keyInvtoryButton_l1);
-    sceneDial.innerHTML = "You are in room C460";
 }
 
 function lockerButtonHandler_l1() {
     moveAudio.play();
     if (lockerInput_l1.value == locker_l1.misteryItem){
         sceneDial.innerHTML = "";
-        sceneContent.style.color = "black";
-        sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                                + "The locker is opened";
-        sceneDial.innerHTML = "There is ";
+        sceneDial.innerHTML = "The locker is opened" + "<br>" + "There is ";
         for (i = 0; i < locker_l1.invtory.length; i++){
             if (locker_l1.invtory[i] === keyItem_l1.name){
                 sceneDial.innerHTML += " a " + locker_l1.invtory[1] + " and ";
                 sceneInteract.appendChild(keyItemButton_l1);
                 keyItemButton_l1.innerHTML = "Click to pick up the Key";
-                keyItemButton_l1.style.background = "orange";
+                keyItemButton_l1.style.background = "darkorange";
+                keyItemButton_l1.className = "button";
                 keyItemButton_l1.addEventListener("click", keyItemButtonHandler_l1, false);
             }
         }
@@ -265,7 +235,6 @@ function keyItemButtonHandler_l1() {
     context.drawImage(keyItem_l1.img, 1 * SIZE + 12, 10 * SIZE + 12);
     sceneInteract.removeChild(keyItemButton_l1);
     keyItemButton_l1.removeEventListener("click", keyItemButtonHandler_l1, false);
-    drawArrow(8,4); //to the main door
 }
 function mathButtonHandler_l1() {
     bookAudio.play();
@@ -283,7 +252,6 @@ function historyButtonHandler_l1() {
                             + "The date was regarded as the end-date of" + "<br>"
                             + "a 5,126-year-long cycle in" + "<br>"
                             + "the Mesoamerican Long Count calendar!";
-    drawArrow(1,6); //to the locker
 }
 function geographyButtonHandler_l1() {
     bookAudio.play();
@@ -302,11 +270,6 @@ function scienceButtonHandler_l1() {
 }
 function checkCollision_l1(e){
     if (e === 37){
-        /*if (gameStarted){
-            moveRight = true;
-            moveUp = true;
-            moveDown = true;
-        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
@@ -319,22 +282,13 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    //moveLeft = false;
-                    moveDown = false;
-                    moveUp = false;
-                    moveRight = false;
-                    moveLeft = false;
+                    lockPlayer();
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
         }
     }
     if (e === 39){
-        /*if (gameStarted){
-            moveLeft = true;
-            moveUp = true;
-            moveDown = true;
-        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
@@ -347,22 +301,13 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    //moveRight = false;
-                    moveDown = false;
-                    moveUp = false;
-                    moveRight = false;
-                    moveLeft = false;
+                    lockPlayer();
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
         }
     }
     if (e === 40){
-        /*if(gameStarted){
-            moveLeft = true;
-            moveRight = true;
-            moveUp = true;
-        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
@@ -375,22 +320,13 @@ function checkCollision_l1(e){
                     player.y >= row * 64 - moveSpeed - 32 &&
                     player.y <= row * 64 - 32
                 ){
-                    //moveDown = false;
-                    moveDown = false;
-                    moveUp = false;
-                    moveRight = false;
-                    moveLeft = false;
+                    lockPlayer();
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
         }
     }
     if (e === 38){
-        /*if(gameStarted){
-            moveLeft = true;
-            moveRight = true;
-            moveDown = true;
-        }*/
         for (row = 0; row < 10; row++){
             for (column = 0; column < 10; column++){
                 if (objects_l1[row][column] !== floor &&
@@ -403,11 +339,7 @@ function checkCollision_l1(e){
                     player.y >= (row + 1)* 64 &&
                     player.y <= (row + 1) * 64 + moveSpeed
                 ){
-                    //moveUp = false;
-                    moveDown = false;
-                    moveUp = false;
-                    moveRight = false;
-                    moveLeft = false;
+                    lockPlayer();
                     scene_l1_Index = getScene_l1(row, column);
                 }
             }
@@ -425,8 +357,6 @@ function getScene_l1(locRow, locColumn) {
         return 4; //book shelf
     if (locRow === 1 && locColumn === 3)
         return 5; //Dresser
-    //if (locRow === 4 && locColumn === 4)
-    //    return 6; // small table
     if (locRow === 2 && locColumn === 8)
         return 7; //bed
 }
@@ -446,7 +376,6 @@ function drawArrow(x, y) {
                 else context.drawImage(arrowRight, x*SIZE, y*SIZE);
             }else {
                 context.clearRect(x*SIZE, y*SIZE, SIZE, SIZE);
-                //context.drawImage(floorcrack,x*SIZE, y*SIZE)
             }
         }else {
             clearInterval(arrowIntv);
