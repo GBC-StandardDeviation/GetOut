@@ -182,6 +182,7 @@ function mainDoorInvtoryButtonHandler_l1() {
     moveAudio.play();
     for (i = 0; i < item.length; i++){
         if(item[i] === keyItem_l1.name){
+            keyAudio.play();
             sceneInteract.appendChild(keyInvtoryButton_l1);
             keyInvtoryButton_l1.innerHTML = "Click to use the Key";
             keyInvtoryButton_l1.style.background = "darkorange";
@@ -229,7 +230,7 @@ function lockerButtonHandler_l1() {
     lockerInput_l1.focus();
 }
 function keyItemButtonHandler_l1() {
-    moveAudio.play();
+    keyAudio.play();
     item.push(locker_l1.invtory.pop());
     sceneDial.innerHTML = "<span>" + "You got a: " + item[0] + "</span>";
     context.drawImage(keyItem_l1.img, 1 * SIZE + 12, 10 * SIZE + 12);
