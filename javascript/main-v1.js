@@ -372,11 +372,12 @@ function startCounter() {
         clearInterval(startCounterIntv);
         levelInput.style.display = "none";
         levelButton.style.display = "none";
-        //sceneContent.style.background = "darkkhaki";
-        sceneContent.innerHTML = "";
-        sceneDial.innerHTML = "";
-        sceneInteract.innerHTML = "";
-        gameStarted = true;
+        messageBar.style.display = "none";
+        timerDisplay.style.display = "none";
+        //sceneContent.innerHTML = "";
+        //sceneDial.innerHTML = "";
+        //sceneInteract.innerHTML = "";
+        gameStarted = false;
         gameEnd = true;
     }
 }
@@ -406,21 +407,24 @@ function getCoor(e) {
     var mouseX = e.offsetX;
     var mouseY = e.offsetY;
     //timerDisplay.innerHTML = mouseX + " " + mouseY;
-    if(levelNum == 3){
-        if (mouseX >= 570 && mouseX <=574 && mouseY >=521 && mouseY <= 535){ //Gold Coast, Queensland, Australia
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            gamearea.style.background = "black";
-            door_l3_Intv = setInterval(openDoor_l3, 2000);
-            win = true;
-        }
-        if(!win){
-            context.drawImage(desk_l3.map, 0, 0);
-            context.beginPath();
-            context.arc(mouseX, mouseY, 10, 0, 2*Math.PI);
-            context.fillStyle = "red";
-            context.fill();
+    if(!gameEnd){
+        if(levelNum == 3){
+            if (mouseX >= 570 && mouseX <=574 && mouseY >=521 && mouseY <= 535){ //Gold Coast, Queensland, Australia
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                gamearea.style.background = "black";
+                door_l3_Intv = setInterval(openDoor_l3, 2000);
+                win = true;
+            }
+            if(!win){
+                context.drawImage(desk_l3.map, 0, 0);
+                context.beginPath();
+                context.arc(mouseX, mouseY, 10, 0, 2*Math.PI);
+                context.fillStyle = "red";
+                context.fill();
+            }
         }
     }
+
     if(levelNum == 0){
         if (mouseX >= 270 && mouseX <=370 && mouseY >=450 && mouseY <= 480){ //skip Intro Button
             introEnd = true;

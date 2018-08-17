@@ -103,11 +103,13 @@ function start_l1() {
     context.fillText("Use arrow keys to move!", canvas.width/2, canvas.height/2 - 20);
     gamearea.style.display = "block";
     stage.style.display = "none";
+
 }
 function loadScene_l1() {
     if(moveLeft && moveRight && moveUp && moveDown){
         stage.style.display = "none";
         gamearea.style.display = "block";
+        sceneContent.style.background = "gray";
         sceneContent.innerHTML = "";
         sceneDial.innerHTML = main_l1.dial;
         sceneInteract.innerHTML = main_l1.invtory;
