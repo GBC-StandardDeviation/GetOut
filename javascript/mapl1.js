@@ -40,7 +40,7 @@ keyItem_l1.img.src = "images/item/keyItem_l1.png";
 var locker_l1 = {
     dial: "You reached a locker" + "<br>" + "Please enter 4 digit number to open",
     invtory: ["", keyItem_l1.name],
-    misteryItem: 2012
+    misteryItem: 1989
 };
 var bookShelf_l1 = {
     dial: "You reached a bookShelf",
@@ -247,21 +247,22 @@ function historyButtonHandler_l1() {
     sceneDial.innerHTML = "";
     sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                            + "A range of eschatological beliefs that" + "<br>"
-                            + "transformative events would" + "<br>"
-                            + "occur on 21 December" + " " + "<span>" + "2012." + "</span>" + "<br>"
-                            + "The date was regarded as the end-date of" + "<br>"
-                            + "a 5,126-year-long cycle in" + "<br>"
-                            + "the Mesoamerican Long Count calendar!";
+        + "During 1859, a powerful solar storm" + "<br>"
+        + "disrupted telegraph systems over Europe." + "<br>"
+        + "Another geomagnetic storm was reported in" + " " + "<span>" + "1989" + "</span>" + "<br>"
+        + "that blacked out part of Canada" + "<br>"
+        + "and a similar flare occurred in 2001." + "<br>"
+        + "And the most intense flare ever measured" + "<br>"
+        + "was on November 2003.";
 }
 function geographyButtonHandler_l1() {
     bookAudio.play();
     sceneDial.innerHTML = "";
     sceneContent.style.color = "black";
     sceneContent.innerHTML = "<br>" + "<br>" + "<br>" + "<br>"
-                            + "Sofia, Bulgaria  " +  " 42.6983 " + " 23.3199 " + "<br>"
-                            + "London, UK  " + " 51.5098 " + " -0.118 " + "<br>"
-                            + "Arau, Malaysia  " + " 6.4297 " + " 100.269 ";
+        + "Sofia " +  " 42.6983 " + " 23.3199 " + "<br>"
+        + "London " + " 51.5098 " + " -0.118 " + "<br>"
+        + "Gold Coast " + " 28.0167 " + " 153.4000 ";
     sceneDial.innerHTML = "A list of coordinates? Interesting!";
 }
 function scienceButtonHandler_l1() {
